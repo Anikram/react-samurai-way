@@ -1,20 +1,23 @@
 import './App.css';
+import './header.css'
+import React from 'react';
+import Footer from "./components/Footer";
+import Profile from "./components/Profile";
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 
-function App() {
+
+const App = () => {
   return (
-    <div className={'app-wrapper'}>
-      <header className={'header'}>
-        <img src="https://sun9-8.userapi.com/c853620/v853620963/13b4d5/aFszB8VaQCY.jpg" alt=""/>
-      </header>
-      <nav className={'nav'}>
-        <div><a href="">Profile</a></div>
-        <div><a href="">Messages</a></div>
-        <div><a href="">News</a></div>
-        <div><a href="">Music</a></div>
-      </nav>
-      <div className={'content'}>
-        Main content
+    <div>
+      <Header/>
+
+      <div className={'app-wrapper'}>
+        <Navbar/>
+        <Profile/>
       </div>
+
+      <Footer/>
     </div>
   );
 };
