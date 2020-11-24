@@ -1,0 +1,20 @@
+.post {
+    background-color: cornsilk;
+    /*text-align: center;*/
+    width: 60%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.post img {
+    width: 3rem;
+    height: auto;
+    border-radius: 1.5rem;
+    display: inline-block;
+}
+
+.text {
+    color: burlywood;
+    display: inline-block;
+    padding: 1rem;
+}
