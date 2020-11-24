@@ -1,10 +1,13 @@
 import s from './Post.module.css';
 
-const Post = () => {
+const Post = (props) => {
   return (
     <div className={s.post}>
       <img src="https://www.kosher.com/resized/open_graph/u/s/user_avatar.png" alt=""/>
-      <div className={s.text}>post 1</div>
+      <div className={s.text}>{props.message}</div>
+      <div className={s.postUi}>
+        <span className={''}>Like</span>
+      </div>
     </div>
   )
 };
