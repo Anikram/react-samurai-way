@@ -6,6 +6,10 @@ const Post = (props) => {
       <img src="https://www.kosher.com/resized/open_graph/u/s/user_avatar.png" alt=""/>
       <div className={s.text}>{props.message}</div>
       <div className={s.postUi}>
+        <div className={s.likeCounter}>
+          <span>{props.likeCount}</span>
+        </div>
+
         <span className={''}>Like</span>
       </div>
     </div>
