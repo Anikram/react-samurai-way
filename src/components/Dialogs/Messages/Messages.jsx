@@ -3,14 +3,22 @@ import Message from "./Message/Message";
 
 import s from './Messages.module.css'
 
+let messageData = [
+  {id: 1, text: 'Who are you?'},
+  {id: 2, text: 'What are you?'},
+  {id: 3, text: 'Why are you?'},
+  {id: 4, text: 'When are you?'},
+  {id: 5, text: 'How are you?'},
+];
+
 const Messages = () => {
   return (
     <div className={s.messages}>
-      <Message text='Hello! Who are you?'/>
-      <Message text='Hello! What are you?'/>
-      <Message text='Hello! Why are you?'/>
-      <Message text='Hello! When are you?'/>
-      <Message text='Hello! How are you?'/>
+      <Message text={messageData[0].text}/>
+      <Message text={messageData[1].text}/>
+      <Message text={messageData[2].text}/>
+      <Message text={messageData[3].text}/>
+      <Message text={messageData[4].text}/>
     </div>
   )
 };
