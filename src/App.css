@@ -26,7 +26,7 @@ body {
             'left middle middle middle middle right'
             'footer footer footer footer footer footer';
     /*grid-template-rows: 11rem 1fr;*/
-    /*grid-template-columns: 2fr 10fr;*/
+    grid-template-columns: 2fr 10fr;
 
     grid-gap: 10px;
 }

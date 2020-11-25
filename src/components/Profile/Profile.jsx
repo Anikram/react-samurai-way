@@ -6,7 +6,7 @@ const Profile = (props) => {
   return (
     <div className={s.profileContent + ' border tile'}>
       <ProfileInfo/>
-      <Posts posts={props.posts}/>
+      <Posts posts={props.data.posts}/>
     </div>
   )
 };

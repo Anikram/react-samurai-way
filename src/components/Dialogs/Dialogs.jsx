@@ -6,7 +6,7 @@ import Messages from "./Messages/Messages";
 
 const Dialogs = (props) => {
   let dialogElements =
-    props.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
+    props.data.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
 
   return (
     <div className={s.dialogs + ' tile'}>
@@ -14,7 +14,7 @@ const Dialogs = (props) => {
         {dialogElements}
       </div>
       <div className={s.messages}>
-        <Messages messages={props.messages}/>
+        <Messages messages={props.data.messages}/>
       </div>
     </div>
   )

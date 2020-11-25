@@ -4,7 +4,7 @@ import s from './Posts.module.css';
 
 const Posts = (props) => {
   let postElements =
-    props.posts.map(p => <Post message={p.message} likeCount={p.likes}/>);
+    props.posts.map(p => <Post message={p.message} likeCount={p.likeCount}/>);
   return (
     <div className={s.posts}>
       <h3>My posts</h3>
