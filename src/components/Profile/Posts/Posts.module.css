@@ -1,7 +1,15 @@
 .textarea {
-    /*margin: 0.5rem;*/
+    margin: 0.3rem 0 0.3rem 0;
+    width: 15rem;
+    height: 5rem;
 }
 
 .posts {
-    margin: 0.5rem;
+    margin: 2rem 0.5rem;
+}
+
+.addButton {
+    width: 8rem;
+    height: 2rem;
+    background: #977035;
 }

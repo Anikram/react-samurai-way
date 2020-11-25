@@ -1,7 +1,18 @@
 .item {
-    color: white;
+    padding: 0.5rem 0;
 }
 
-.left {
+.item a {
+    color: #362917;
+    text-decoration: none;
+}
+
+.item a.active {
+    color: goldenrod;
+}
+
+.navbar {
     grid-area: left;
+    padding: 2rem;
+    /*background-color: #362917;*/
 }

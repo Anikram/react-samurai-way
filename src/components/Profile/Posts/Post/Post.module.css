@@ -1,5 +1,5 @@
 .post {
-    background-color: cornsilk;
+    background-color: #6f7408;
     /*text-align: center;*/
     width: 60%;
     margin: 0.5rem;
@@ -20,7 +20,7 @@
 }
 
 .postUi {
-    /*padding: 0.5rem;*/
+    vertical-align: center;
     display: block;
 }
 
@@ -30,14 +30,17 @@
     display: inline-block;
     width: 3rem;
     height: 1.2rem;
-    background-color: silver;
+    background-color: #977035;
     border: rgba(65, 12, 12, 0.78);
 }
 
 .likeCounter {
+    /*background-color: #362917;*/
     display: inline-block;
-    width: 3rem;
-    height: 1.2rem;
-    margin: 0 0.5rem;
-    background-color: silver;
+    /*width: 3rem;*/
+    /*height: 1.2rem;*/
+    margin: 0.5rem 0.5rem;
+    font-size: 1rem;
+    color: #eae100;
+    /*background-color: silver;*/
 }

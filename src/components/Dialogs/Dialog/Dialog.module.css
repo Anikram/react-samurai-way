@@ -1,0 +1,11 @@
+.dialog a {
+    color: black;
+    text-decoration: none;
+}
+
+.dialog .active {
+    color: goldenrod;
+}
+
+
+

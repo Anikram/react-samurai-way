@@ -1,6 +1,6 @@
 .header {
     grid-area: header;
-    background-color: #f1f1f1;
+    background-color: #977035;
     /*padding: 30px;*/
     /*text-align: center;*/
     font-size: 35px;
@@ -9,7 +9,7 @@
 .header img {
     width: 5rem;
     height: auto;
-    margin: 0.5rem 0 0.5rem 1rem;
+    margin: 0.5rem 0 0.5rem 5rem;
 }
 
 .logo {
