@@ -9,7 +9,7 @@ const MessageLeft = (props) => {
         <img src="https://www.kosher.com/resized/open_graph/u/s/user_avatar.png" alt=""/>
       </div>
       <div className={`${s.messageText} ${s.left}`}>
-        <p>{props.text}</p>
+        <p>{props.message}</p>
       </div>
     </div>
   )

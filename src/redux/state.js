@@ -2,11 +2,6 @@ let store = {
   _subscriber() {
     console.log('State rerender');
   },
-
-  subscribe(observer) {
-    this._subscriber = observer;
-  },
-
   _state: {
     profilePage: {
       posts: [
@@ -29,11 +24,11 @@ let store = {
       ],
 
       messages: [
-        {id: 1, text: 'Who are you?'},
-        {id: 2, text: 'What are you?'},
-        {id: 3, text: 'Why are you?'},
-        {id: 4, text: 'When are you?'},
-        {id: 5, text: 'How are you?'},
+        {id: 1, message: 'Who are you?'},
+        {id: 2, message: 'What are you?'},
+        {id: 3, message: 'Why are you?'},
+        {id: 4, message: 'When are you?'},
+        {id: 5, message: 'How are you?'},
       ],
       newMessageText: ""
     },
@@ -77,46 +72,42 @@ let store = {
       ]
     },
   },
-
-  addPost() {
-    this._state.profilePage.posts.push(
-      {
-        id: 7,
-        message: this._state.profilePage.newPostText,
-        likeCount: 0
-      }
-    )
-    this._state.profilePage.newPostText = '';
-    this._subscriber(this._state);
-  },
-
-  listenPostsTextArea(text) {
-    debugger;
-    this._state.profilePage.newPostText = text;
-    this._subscriber(this._state);
-  },
-
-  addMessage() {
-    this._state.dialogsPage.messages.push(
-      {
-        id: 7,
-        text: this._state.dialogsPage.newMessageText
-      }
-    )
-    this._state.dialogsPage.newMessageText = '';
-    this._subscriber(this._state);
-  },
-
-  listenMessagesTextArea(text) {
-    this._state.dialogsPage.newMessageText = text;
-    this._subscriber(this._state);
-  },
-
   getState() {
     return this._state;
+  },
+  subscribe(observer) {
+    this._subscriber = observer;
+  },
+
+  dispatch(action) {
+    if (action.type === 'ADD-POST') {
+      this._state.profilePage.posts.push(
+        {
+          id: 7,
+          message: this._state.profilePage.newPostText,
+          likeCount: 0
+        }
+      )
+      this._state.profilePage.newPostText = '';
+      this._subscriber(this._state);
+    } else if (action.type === 'ADD-MESSAGE') {
+      this._state.dialogsPage.messages.push(
+        {
+          id: 7,
+          message: this._state.dialogsPage.newMessageText
+        }
+      )
+      this._state.dialogsPage.newMessageText = '';
+      this._subscriber(this._state);
+    } else if (action.type === 'UPDATE-POSTS-TEXTAREA') {
+      this._state.profilePage.newPostText = action.message;
+      this._subscriber(this._state);
+    } else if (action.type === 'UPDATE-MESSAGES-TEXTAREA') {
+      this._state.dialogsPage.newMessageText = action.message;
+      this._subscriber(this._state);
+    }
   }
 }
 
 export default store;
-
 window.store = store;

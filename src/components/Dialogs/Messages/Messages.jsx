@@ -6,11 +6,11 @@ import s from './Messages.module.css'
 
 const Messages = (props) => {
   let messagesElements =
-    props.messages.map((m, i) => {
+    props.dialogsPage.messages.map((m, i) => {
       if (i % 2) {
-        return <MessageLeft text={m.text}/>
+        return <MessageLeft message={m.message}/>
       } else {
-        return <MessageRight text={m.text}/>;
+        return <MessageRight message={m.message}/>;
       }
     });
 
@@ -18,19 +18,19 @@ const Messages = (props) => {
 
 
   let addMessage = () => {
-    props.addMessage();
+    props.dispatch({type: 'ADD-MESSAGE'});
   }
 
 
-  let listenTextArea = () => {
-    props.listenMessagesTextArea(newMessageElement.current.value);
+  let updateMessageText = () => {
+    props.dispatch({type: 'UPDATE-MESSAGES-TEXTAREA', message: newMessageElement.current.value});
   }
 
 
   return (
     <div className={s.messages}>
       {messagesElements}
-      <textarea ref={newMessageElement} onChange={listenTextArea} value={props.newMessageText}/>
+      <textarea ref={newMessageElement} onChange={updateMessageText} value={props.dialogsPage.newMessageText}/>
       <button onClick={addMessage}>Send</button>
     </div>
   )

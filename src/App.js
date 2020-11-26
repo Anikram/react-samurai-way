@@ -21,20 +21,14 @@ const App = (props) => {
           <Navbar/>
           <div className={'app-wrapper-content'}>
             <Route path='/profile'
-                   render={() => <Profile profilePage={props.store.getState().profilePage}
-                                          addPost={props.store.addPost.bind(props.store)}
-                                          listenPostsTextArea={props.store.listenPostsTextArea.bind(props.store)}
-                                          newPostText={props.store.getState().profilePage.newPostText}/>}/>
-            <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.store.getState().dialogsPage}
-                                                          addMessage={props.store.addMessage.bind(props.store)}
-                                                          listenMessagesTextArea={props.store.listenMessagesTextArea.bind(props.store)}
-                                                          newMessageText={props.store.getState().dialogsPage.newMessageText}/>}/>
+                   render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
+            <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>}/>
             <Route path='/music' render={() => <Music/>}/>
-            <Route path='/news' render={() => <News store={props.store}/>}/>
+            <Route path='/news' render={() => <News newsPage={props.state.newsPage}/>}/>
             <Route path='/settings' render={() => <Settings/>}/>
           </div>
           <div>
-            <Friends store={props.store}/>
+            <Friends friendsPage={props.state.friendsPage}/>
           </div>
         </div>
       </BrowserRouter>

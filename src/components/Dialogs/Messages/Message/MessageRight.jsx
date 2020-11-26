@@ -6,7 +6,7 @@ const MessageRight = (props) => {
   return (
     <div className={`${s.message}`}>
       <div className={`${s.messageText} ${s.right}`}>
-        <p>{props.text}</p>
+        <p>{props.message}</p>
       </div>
       <div className={`${s.messageAvatar} ${s.floatRight}`}>
         <img src="https://www.kosher.com/resized/open_graph/u/s/user_avatar.png" alt=""/>

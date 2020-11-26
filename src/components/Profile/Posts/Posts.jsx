@@ -5,16 +5,16 @@ import s from './Posts.module.css';
 
 const Posts = (props) => {
   let postElements =
-    props.posts.map(p => <Post message={p.message} likeCount={p.likeCount}/>);
+    props.profilePage.posts.map(p => <Post message={p.message} likeCount={p.likeCount}/>);
 
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    props.addPost();
+    props.dispatch({type: 'ADD-POST'});
   }
 
-  let changeTextarea = () => {
-    props.listenPostsTextArea(newPostElement.current.value);
+  let updatePostTextarea = () => {
+    props.dispatch({type: 'UPDATE-POSTS-TEXTAREA', message: newPostElement.current.value});
   }
 
   return (
@@ -22,7 +22,8 @@ const Posts = (props) => {
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea className={s.textarea} ref={newPostElement} onChange={changeTextarea} value={props.newPostText}/>
+          <textarea className={s.textarea} ref={newPostElement} onChange={updatePostTextarea}
+                    value={props.profilePage.newPostText}/>
         </div>
         <div>
           <button className={s.addButton} onClick={addPost}>
