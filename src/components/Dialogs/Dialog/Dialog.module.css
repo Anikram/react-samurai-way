@@ -1,6 +1,19 @@
+.dialog {
+    padding: 2rem 1rem;
+
+}
 .dialog a {
+    display: inline-block;
     color: black;
     text-decoration: none;
+    padding: 0.5rem;
+}
+
+.dialog img {
+    width: 3rem;
+    height: auto;
+    border-radius: 1.5rem;
+    vertical-align: middle;
 }
 
 .dialog .active {

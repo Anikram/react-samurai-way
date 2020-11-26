@@ -55,6 +55,16 @@ let state = {
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ipsa iusto modi. Distinctio facere, ipsa?'
       },
     ]
+  },
+
+  friendsPage: {
+    friends: [
+      {id: 1, name: 'Felix' },
+      {id: 2, name: 'Atom' },
+      {id: 3, name: 'Braian' },
+      {id: 4, name: 'Corckney' },
+      {id: 5, name: 'Emma' },
+    ]
   }
 
 

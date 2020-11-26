@@ -1,4 +1,41 @@
 .message {
-
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
 }
 
+.text {
+    align-items: center;
+}
+
+.left {
+    border-bottom-left-radius: 2rem 1rem;
+    border-bottom-right-radius: 2rem 1rem;
+    border-top-right-radius: 2rem 1rem;
+}
+
+.right {
+    border-bottom-left-radius: 2rem 1rem;
+    border-bottom-right-radius: 2rem 1rem;
+    border-top-left-radius: 2rem 1rem;
+}
+
+.messageAvatarRight {
+    float: right;
+}
+.messageAvatarLeft {
+    float: left;
+}
+
+.messageAvatar img{
+
+    width: 2rem;
+    height: auto;
+    border-radius: 1rem;
+}
+
+.messageText {
+    width: 20rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: lemonchiffon;
+}

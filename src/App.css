@@ -19,20 +19,22 @@ body {
 
 .app-wrapper {
     display: grid;
-    margin: 0 auto;
-    max-width: 1200px;
-    grid-template-areas:
-            'header header header header header header'
-            'left middle middle middle middle right'
-            'footer footer footer footer footer footer';
-    /*grid-template-rows: 11rem 1fr;*/
-    grid-template-columns: 2fr 10fr;
-
+    margin: 10px auto;
+    grid-template-columns: 1fr 4fr 1fr;
     grid-gap: 10px;
+    max-width: 1200px;
+    /*grid-template-areas:*/
+    /*        'header header header header header header'*/
+    /*        'left middle middle middle middle right'*/
+    /*        'footer footer footer footer footer footer';*/
+    /*!*grid-template-rows: 11rem 1fr;*!*/
+    /*grid-template-columns: 2fr 8fr 2fr;*/
+
+
 }
 
-.app-wrapper-content {
-    grid-area: middle;
+.app-middle-content {
+
 }
 
 .tile {
@@ -46,9 +48,8 @@ body {
             'left middle middle middle middle right'
             'footer footer footer footer footer footer';
     /* grid-column-gap: 10px; - if you want gap between the columns */
+
 }
-
-
 
 .right {
     grid-area: right;
