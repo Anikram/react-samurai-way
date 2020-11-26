@@ -14,9 +14,18 @@ const Messages = (props) => {
       }
     });
 
+  let newMessageElement = React.createRef();
+
+
+  let addMessage = () => {
+    alert(newMessageElement.current.value);
+  }
+
   return (
     <div className={s.messages}>
       {messagesElements}
+      <textarea ref={newMessageElement}></textarea>
+      <button onClick={addMessage}>Send</button>
     </div>
   )
 };

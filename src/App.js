@@ -10,6 +10,7 @@ import Settings from "./components/Settings/Settings";
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
+import {listenTextArea} from "./redux/state";
 
 const App = (props) => {
   return (
@@ -19,7 +20,7 @@ const App = (props) => {
         <div className={'app-wrapper'}>
           <Navbar/>
           <div className={'app-wrapper-content'}>
-            <Route path='/profile' render={() => <Profile data={props.state.profilePage}/>}/>
+            <Route path='/profile' render={() => <Profile data={props.state.profilePage} addPost={props.addPost} listenTextArea={listenTextArea}/>}/>
             <Route path='/dialogs' render={() => <Dialogs data={props.state.dialogsPage}/>}/>
             <Route path='/music' render={() => <Music/>}/>
             <Route path='/news' render={() => <News newsPosts={props.state.newsPage}/>}/>

@@ -1,3 +1,5 @@
+import {renderEntireTree} from "../render";
+
 let state = {
 
   profilePage: {
@@ -9,6 +11,7 @@ let state = {
       {id: 5, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sed?', likeCount: 233},
       {id: 6, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sed?', likeCount: 14},
     ],
+    buffer: ""
   },
   dialogsPage: {
     dialogs: [
@@ -62,12 +65,30 @@ let state = {
       {id: 1, name: 'Felix' },
       {id: 2, name: 'Atom' },
       {id: 3, name: 'Braian' },
-      {id: 4, name: 'Corckney' },
+      {id: 4, name: 'Morgan' },
       {id: 5, name: 'Emma' },
     ]
-  }
+  },
+
 
 
 };
+
+export let addPost = () => {
+  state.profilePage.posts.push(
+    {
+      id: 7,
+      message: state.profilePage.buffer,
+      likeCount: 0
+    }
+  )
+  state.profilePage.buffer = '';
+  renderEntireTree(state);
+};
+
+export let listenTextArea = (text) => {
+  state.profilePage.buffer = text;
+  renderEntireTree(state);
+}
 
 export default state;
