@@ -110,4 +110,13 @@ let store = {
 }
 
 export default store;
+
+export const updateMessageActionCreator = (message) => ({type: 'UPDATE-MESSAGES-TEXTAREA', message: message});
+
+export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'});
+
+export const updatePostActionCreator = (message) => ({type: 'UPDATE-POSTS-TEXTAREA', message: message});
+
+export const addPostActionCreator = () => ({type: 'ADD-POST'});
+
 window.store = store;

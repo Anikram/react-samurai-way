@@ -1,8 +1,8 @@
 import React from 'react';
 import MessageLeft from "./Message/MessageLeft";
 import MessageRight from "./Message/MessageRight";
-
 import s from './Messages.module.css'
+import {addMessageActionCreator, updateMessageActionCreator} from "../../../redux/state";
 
 const Messages = (props) => {
   let messagesElements =
@@ -16,16 +16,13 @@ const Messages = (props) => {
 
   let newMessageElement = React.createRef();
 
-
   let addMessage = () => {
-    props.dispatch({type: 'ADD-MESSAGE'});
+    props.dispatch(addMessageActionCreator());
   }
-
 
   let updateMessageText = () => {
-    props.dispatch({type: 'UPDATE-MESSAGES-TEXTAREA', message: newMessageElement.current.value});
+    props.dispatch(updateMessageActionCreator(newMessageElement.current.value));
   }
-
 
   return (
     <div className={s.messages}>
