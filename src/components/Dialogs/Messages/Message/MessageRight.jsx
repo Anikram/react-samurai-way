@@ -8,7 +8,7 @@ const MessageRight = (props) => {
       <div className={`${s.messageText} ${s.right}`}>
         <p>{props.text}</p>
       </div>
-      <div className={`${s.messageAvatar} ${s.messageAvatarRight}`}>
+      <div className={`${s.messageAvatar} ${s.floatRight}`}>
         <img src="https://www.kosher.com/resized/open_graph/u/s/user_avatar.png" alt=""/>
       </div>
     </div>

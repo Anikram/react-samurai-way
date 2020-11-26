@@ -18,13 +18,19 @@ const Messages = (props) => {
 
 
   let addMessage = () => {
-    alert(newMessageElement.current.value);
+    props.addMessage();
   }
+
+
+  let listenTextArea = () => {
+    props.listenMessagesTextArea(newMessageElement.current.value);
+  }
+
 
   return (
     <div className={s.messages}>
       {messagesElements}
-      <textarea ref={newMessageElement}></textarea>
+      <textarea ref={newMessageElement} onChange={listenTextArea} value={props.newMessageText}/>
       <button onClick={addMessage}>Send</button>
     </div>
   )

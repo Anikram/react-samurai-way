@@ -19,19 +19,20 @@
     border-top-left-radius: 2rem 1rem;
 }
 
-.messageAvatarRight {
-    float: right;
-}
-.messageAvatarLeft {
-    float: left;
-}
 
 .messageAvatar img{
-
+    display: block;
     width: 2rem;
+    margin: 0 auto;
     height: auto;
     border-radius: 1rem;
 }
+
+.messageAvatar {
+
+}
+
+
 
 .messageText {
     width: 20rem;

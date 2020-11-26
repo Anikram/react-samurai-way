@@ -1,4 +1,6 @@
-import {renderEntireTree} from "../render";
+let renderEntireTree = () => {
+  console.log('State rerender')
+};
 
 let state = {
 
@@ -11,7 +13,7 @@ let state = {
       {id: 5, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sed?', likeCount: 233},
       {id: 6, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sed?', likeCount: 14},
     ],
-    buffer: ""
+    newPostText: ""
   },
   dialogsPage: {
     dialogs: [
@@ -28,7 +30,8 @@ let state = {
       {id: 3, text: 'Why are you?'},
       {id: 4, text: 'When are you?'},
       {id: 5, text: 'How are you?'},
-    ]
+    ],
+    newMessageText: ""
   },
   newsPage: {
     newsPosts: [
@@ -62,14 +65,13 @@ let state = {
 
   friendsPage: {
     friends: [
-      {id: 1, name: 'Felix' },
-      {id: 2, name: 'Atom' },
-      {id: 3, name: 'Braian' },
-      {id: 4, name: 'Morgan' },
-      {id: 5, name: 'Emma' },
+      {id: 1, name: 'Felix'},
+      {id: 2, name: 'Atom'},
+      {id: 3, name: 'Braian'},
+      {id: 4, name: 'Morgan'},
+      {id: 5, name: 'Emma'},
     ]
   },
-
 
 
 };
@@ -78,17 +80,37 @@ export let addPost = () => {
   state.profilePage.posts.push(
     {
       id: 7,
-      message: state.profilePage.buffer,
+      message: state.profilePage.newPostText,
       likeCount: 0
     }
   )
-  state.profilePage.buffer = '';
+  state.profilePage.newPostText = '';
   renderEntireTree(state);
 };
 
-export let listenTextArea = (text) => {
-  state.profilePage.buffer = text;
+export let listenPostsTextArea = (text) => {
+  state.profilePage.newPostText = text;
+  renderEntireTree(state);
+}
+
+export let addMessage = () => {
+  state.dialogsPage.messages.push(
+    {
+      id: 7,
+      text: state.dialogsPage.newMessageText
+    }
+  )
+  state.dialogsPage.newMessageText = '';
+  renderEntireTree(state);
+};
+
+export let listenMessagesTextArea = (text) => {
+  state.dialogsPage.newMessageText = text;
   renderEntireTree(state);
 }
 
 export default state;
+
+export const subscriber = (observer) => {
+  renderEntireTree = observer;
+};
