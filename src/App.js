@@ -20,17 +20,21 @@ const App = (props) => {
         <div className={'app-wrapper'}>
           <Navbar/>
           <div className={'app-wrapper-content'}>
-            <Route path='/profile' render={() => <Profile data={props.state.profilePage} addPost={props.addPost}
-                                                          listenPostsTextArea={props.listenPostsTextArea}/>}/>
-            <Route path='/dialogs' render={() => <Dialogs data={props.state.dialogsPage} addMessage={props.addMessage}
-                                                          listenMessagesTextArea={props.listenMessagesTextArea}
-                                                          newMessageText={props.state.dialogsPage.newMessageText}/>}/>
+            <Route path='/profile'
+                   render={() => <Profile profilePage={props.store.getState().profilePage}
+                                          addPost={props.store.addPost.bind(props.store)}
+                                          listenPostsTextArea={props.store.listenPostsTextArea.bind(props.store)}
+                                          newPostText={props.store.getState().profilePage.newPostText}/>}/>
+            <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.store.getState().dialogsPage}
+                                                          addMessage={props.store.addMessage.bind(props.store)}
+                                                          listenMessagesTextArea={props.store.listenMessagesTextArea.bind(props.store)}
+                                                          newMessageText={props.store.getState().dialogsPage.newMessageText}/>}/>
             <Route path='/music' render={() => <Music/>}/>
-            <Route path='/news' render={() => <News newsPosts={props.state.newsPage}/>}/>
+            <Route path='/news' render={() => <News store={props.store}/>}/>
             <Route path='/settings' render={() => <Settings/>}/>
           </div>
           <div>
-            <Friends data={props.state.friendsPage}/>
+            <Friends store={props.store}/>
           </div>
         </div>
       </BrowserRouter>

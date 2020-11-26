@@ -11,7 +11,7 @@ const Friends = (props) => {
     )
   };
 
-  let friendsElements = props.data.friends.map(f => <Friend name={f.name}/>);
+  let friendsElements = props.store.getState().friendsPage.friends.map(f => <Friend name={f.name}/>);
 
   return (
     <div className={`${s.friends} tile flex-container`}><h3>Friends</h3>

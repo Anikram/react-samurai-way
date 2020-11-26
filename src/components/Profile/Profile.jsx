@@ -6,8 +6,7 @@ const Profile = (props) => {
   return (
     <div className={s.profileContent + ' border tile'}>
       <ProfileInfo/>
-      <Posts posts={props.data.posts} addPost={props.addPost} listenPostsTextArea={props.listenPostsTextArea}
-             newPostText={props.data.newPostText}/>
+      <Posts posts={props.profilePage.posts} listenPostsTextArea={props.listenPostsTextArea} addPost={props.addPost} newPostText={props.newPostText}/>
     </div>
   )
 };

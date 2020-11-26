@@ -4,10 +4,9 @@ import s from './Dialogs.module.css'
 import Messages from "./Messages/Messages";
 
 
-
 const Dialogs = (props) => {
   let dialogElements =
-    props.data.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
+    props.dialogsPage.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
 
   return (
     <div className={s.dialogs + ' tile'}>
@@ -15,8 +14,8 @@ const Dialogs = (props) => {
         {dialogElements}
       </div>
 
-      <Messages messages={props.data.messages} listenMessagesTextArea={props.listenMessagesTextArea}
-                addMessage={props.addMessage} newMessageText={props.newMessageText}/>
+      <Messages addMessage={props.addMessage} listenMessagesTextArea={props.listenMessagesTextArea}
+                newMessageText={props.newMessageText} messages={props.dialogsPage.messages}/>
     </div>
   )
 };
