@@ -1,13 +1,15 @@
-const ADD_POST = 'ADD-POST';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_POSTS_TEXTAREA = 'UPDATE-POSTS-TEXTAREA';
-const UPDATE_MESSAGES_TEXTAREA = 'UPDATE-MESSAGES-TEXTAREA';
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
 
+const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD-LIKE';
+const UPDATE_POSTS_TEXTAREA = 'UPDATE-POSTS-TEXTAREA';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_MESSAGES_TEXTAREA = 'UPDATE-MESSAGES-TEXTAREA';
 
 let store = {
   _subscriber() {
-    console.log('State rerender');
+    console.log('Morph "_subscriber()" into render function');
   },
   _state: {
     profilePage: {
@@ -87,36 +89,10 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      this._state.profilePage.posts.push(
-        {
-          id: 7,
-          message: this._state.profilePage.newPostText,
-          likeCount: 0
-        }
-      )
-      this._state.profilePage.newPostText = '';
-      this._subscriber(this._state);
-    } else if (action.type === ADD_MESSAGE) {
-      this._state.dialogsPage.messages.push(
-        {
-          id: 7,
-          message: this._state.dialogsPage.newMessageText
-        }
-      )
-      this._state.dialogsPage.newMessageText = '';
-      this._subscriber(this._state);
-    } else if (action.type === UPDATE_POSTS_TEXTAREA) {
-      this._state.profilePage.newPostText = action.message;
-      this._subscriber(this._state);
-    } else if (action.type === UPDATE_MESSAGES_TEXTAREA) {
-      this._state.dialogsPage.newMessageText = action.message;
-      this._subscriber(this._state);
-    } else if (action.type === ADD_LIKE) {
-      this._state.profilePage.posts[action.id].likeCount += 1;
-      this._subscriber(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
 
+    this._subscriber(this._state);
   }
 }
 
