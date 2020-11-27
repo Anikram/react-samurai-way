@@ -5,6 +5,8 @@ import s from './Messages.module.css'
 import {addMessageActionCreator, updateMessageActionCreator} from "../../../redux/state";
 
 const Messages = (props) => {
+
+  let newMessageText = props.dialogsPage.newMessageText;
   let messagesElements =
     props.dialogsPage.messages.map((m, i) => {
       if (i % 2) {
@@ -14,21 +16,20 @@ const Messages = (props) => {
       }
     });
 
-  let newMessageElement = React.createRef();
-
-  let addMessage = () => {
+  let onSendMessageClick = () => {
     props.dispatch(addMessageActionCreator());
   }
 
-  let updateMessageText = () => {
-    props.dispatch(updateMessageActionCreator(newMessageElement.current.value));
+  let onMessageTextChange = (e) => {
+    let message = e.target.value;
+    props.dispatch(updateMessageActionCreator(message));
   }
 
   return (
     <div className={s.messages}>
       {messagesElements}
-      <textarea ref={newMessageElement} onChange={updateMessageText} value={props.dialogsPage.newMessageText}/>
-      <button onClick={addMessage}>Send</button>
+      <textarea onChange={onMessageTextChange} value={newMessageText}/>
+      <button onClick={onSendMessageClick}>Send</button>
     </div>
   )
 };

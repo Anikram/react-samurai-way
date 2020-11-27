@@ -1,3 +1,10 @@
+const ADD_POST = 'ADD-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_POSTS_TEXTAREA = 'UPDATE-POSTS-TEXTAREA';
+const UPDATE_MESSAGES_TEXTAREA = 'UPDATE-MESSAGES-TEXTAREA';
+
+const ADD_LIKE = 'ADD-LIKE';
+
 let store = {
   _subscriber() {
     console.log('State rerender');
@@ -80,7 +87,7 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
+    if (action.type === ADD_POST) {
       this._state.profilePage.posts.push(
         {
           id: 7,
@@ -90,7 +97,7 @@ let store = {
       )
       this._state.profilePage.newPostText = '';
       this._subscriber(this._state);
-    } else if (action.type === 'ADD-MESSAGE') {
+    } else if (action.type === ADD_MESSAGE) {
       this._state.dialogsPage.messages.push(
         {
           id: 7,
@@ -99,24 +106,30 @@ let store = {
       )
       this._state.dialogsPage.newMessageText = '';
       this._subscriber(this._state);
-    } else if (action.type === 'UPDATE-POSTS-TEXTAREA') {
+    } else if (action.type === UPDATE_POSTS_TEXTAREA) {
       this._state.profilePage.newPostText = action.message;
       this._subscriber(this._state);
-    } else if (action.type === 'UPDATE-MESSAGES-TEXTAREA') {
+    } else if (action.type === UPDATE_MESSAGES_TEXTAREA) {
       this._state.dialogsPage.newMessageText = action.message;
       this._subscriber(this._state);
+    } else if (action.type === ADD_LIKE) {
+      this._state.profilePage.posts[action.id].likeCount += 1;
+      this._subscriber(this._state);
     }
+
   }
 }
 
 export default store;
 
-export const updateMessageActionCreator = (message) => ({type: 'UPDATE-MESSAGES-TEXTAREA', message: message});
+export const updateMessageActionCreator = (message) => ({type: UPDATE_MESSAGES_TEXTAREA, message: message});
 
-export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'});
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
 
-export const updatePostActionCreator = (message) => ({type: 'UPDATE-POSTS-TEXTAREA', message: message});
+export const updatePostActionCreator = (message) => ({type: UPDATE_POSTS_TEXTAREA, message: message});
 
-export const addPostActionCreator = () => ({type: 'ADD-POST'});
+export const addPostActionCreator = () => ({type: ADD_POST});
+
+export const addLikePostActionCreator = (post_id) => ({type: ADD_LIKE, id: post_id});
 
 window.store = store;
