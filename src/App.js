@@ -21,14 +21,14 @@ const App = (props) => {
           <Navbar/>
           <div className={'app-wrapper-content'}>
             <Route path='/profile'
-                   render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
-            <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>}/>
+                   render={() => <Profile profilePage={props.state.profileReducer} dispatch={props.dispatch}/>}/>
+            <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsReducer} dispatch={props.dispatch}/>}/>
             <Route path='/music' render={() => <Music/>}/>
-            <Route path='/news' render={() => <News newsPage={props.state.newsPage}/>}/>
+            <Route path='/news' render={() => <News newsPage={props.state.newsReducer}/>}/>
             <Route path='/settings' render={() => <Settings/>}/>
           </div>
           <div>
-            <Friends friendsPage={props.state.friendsPage}/>
+            <Friends friends={props.state.friendsReducer.friends}/>
           </div>
         </div>
       </BrowserRouter>

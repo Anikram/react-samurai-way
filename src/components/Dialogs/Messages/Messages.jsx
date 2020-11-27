@@ -2,7 +2,7 @@ import React from 'react';
 import MessageLeft from "./Message/MessageLeft";
 import MessageRight from "./Message/MessageRight";
 import s from './Messages.module.css'
-import {addMessageActionCreator, updateMessageActionCreator} from "../../../redux/state";
+import {addMessageActionCreator, updateMessageActionCreator} from "../../../redux/dialogsReducer";
 
 const Messages = (props) => {
 

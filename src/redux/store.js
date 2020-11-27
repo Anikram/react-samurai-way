@@ -1,12 +1,6 @@
 import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 
-const ADD_POST = 'ADD-POST';
-const ADD_LIKE = 'ADD-LIKE';
-const UPDATE_POSTS_TEXTAREA = 'UPDATE-POSTS-TEXTAREA';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_MESSAGES_TEXTAREA = 'UPDATE-MESSAGES-TEXTAREA';
-
 let store = {
   _subscriber() {
     console.log('Morph "_subscriber()" into render function');
@@ -97,15 +91,5 @@ let store = {
 }
 
 export default store;
-
-export const updateMessageActionCreator = (message) => ({type: UPDATE_MESSAGES_TEXTAREA, message: message});
-
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
-
-export const updatePostActionCreator = (message) => ({type: UPDATE_POSTS_TEXTAREA, message: message});
-
-export const addPostActionCreator = () => ({type: ADD_POST});
-
-export const addLikePostActionCreator = (post_id) => ({type: ADD_LIKE, id: post_id});
 
 window.store = store;
