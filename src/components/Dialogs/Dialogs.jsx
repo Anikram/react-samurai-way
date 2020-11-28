@@ -1,13 +1,10 @@
 import React from 'react'
 import Dialog from "./Dialog/Dialog";
 import s from './Dialogs.module.css'
-import Messages from "./Messages/Messages";
+import MessagesContainer from "./Messages/MessagesContainer";
 
 
 const Dialogs = (props) => {
-  let state = props.store.getState().dialogsReducer;
-
-  let dispatch = props.store.dispatch;
 
   let dialogElements =
     props.store.getState().dialogsReducer.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
@@ -18,7 +15,7 @@ const Dialogs = (props) => {
         {dialogElements}
       </div>
 
-      <Messages dialogsPage={state} dispatch={dispatch}/>
+      <MessagesContainer store={props.store}/>
     </div>
   )
 };

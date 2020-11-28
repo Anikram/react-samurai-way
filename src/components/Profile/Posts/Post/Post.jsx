@@ -1,10 +1,9 @@
 import s from './Post.module.css';
 import React from "react";
-import {addLikePostActionCreator} from "../../../../redux/profileReducer";
 
 const Post = (props) => {
-  let addLike = () => {
-    props.dispatch(addLikePostActionCreator(props.postId))
+  let onAddLike = () => {
+    props.addLike(props.postId);
   }
 
   return (
@@ -16,7 +15,7 @@ const Post = (props) => {
           <span>{props.likeCount}</span>
         </div>
 
-        <button onClick={addLike}>Like</button>
+        <button onClick={onAddLike}>Like</button>
       </div>
     </div>
   )

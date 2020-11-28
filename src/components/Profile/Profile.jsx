@@ -7,7 +7,7 @@ const Profile = (props) => {
   return (
     <div className={s.profileContent + ' border tile'}>
       <ProfileInfo/>
-      <PostsContainer store={props.store}/>
+      <PostsContainer store={props.store} posts={props.store.getState().profileReducer.posts}/>
     </div>
   )
 };
