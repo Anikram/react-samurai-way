@@ -3,7 +3,6 @@ import s from './Friends.module.css'
 
 
 const Friends = (props) => {
-debugger;
   const Friend = (props) => {
     return (
       <div className={s.friend}><img src="https://www.kosher.com/resized/open_graph/u/s/user_avatar.png" alt=""/>

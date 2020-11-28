@@ -5,8 +5,12 @@ import Messages from "./Messages/Messages";
 
 
 const Dialogs = (props) => {
+  let state = props.store.getState().dialogsReducer;
+
+  let dispatch = props.store.dispatch;
+
   let dialogElements =
-    props.dialogsPage.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
+    props.store.getState().dialogsReducer.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
 
   return (
     <div className={s.dialogs + ' tile'}>
@@ -14,7 +18,7 @@ const Dialogs = (props) => {
         {dialogElements}
       </div>
 
-      <Messages dialogsPage={props.dialogsPage} dispatch={props.dispatch}/>
+      <Messages dialogsPage={state} dispatch={dispatch}/>
     </div>
   )
 };

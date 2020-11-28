@@ -3,7 +3,6 @@ import React from "react";
 import {addLikePostActionCreator} from "../../../../redux/profileReducer";
 
 const Post = (props) => {
-
   let addLike = () => {
     props.dispatch(addLikePostActionCreator(props.postId))
   }
