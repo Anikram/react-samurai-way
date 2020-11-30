@@ -7,12 +7,15 @@ import friendsReducer from "./friendsReducer";
 
 
 let reducers = combineReducers({
-  profileReducer,
-  dialogsReducer,
-  newsReducer,
-  friendsReducer
+  //profilePage: profileReducer
+  profilePage: profileReducer,
+  dialogsPage: dialogsReducer,
+  newsPage: newsReducer,
+  friendsPage: friendsReducer
 });
 
 let store = createStore(reducers);
+
+window.store = store;
 
 export default store;

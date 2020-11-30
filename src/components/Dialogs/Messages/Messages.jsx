@@ -8,9 +8,9 @@ const Messages = (props) => {
   let messagesElements =
     props.messages.map((m, i) => {
       if (i % 2) {
-        return <MessageLeft message={m.message}/>
+        return <MessageLeft message={m.message} key={m.id}/>
       } else {
-        return <MessageRight message={m.message}/>;
+        return <MessageRight message={m.message} key={m.id}/>;
       }
     });
 

@@ -22,13 +22,13 @@ const App = (props) => {
           <div className={'app-wrapper-content'}>
             <Route path='/profile'
                    render={() => <Profile />}/>
-            <Route path='/dialogs' render={() => <Dialogs/>}/>
+            <Route path='/dialogs' render={() => <Dialogs store={props.store} />}/>
             <Route path='/music' render={() => <Music/>}/>
-            <Route path='/news' render={() => <News />}/>
+            <Route path='/news' render={() => <News store={props.store} />}/>
             <Route path='/settings' render={() => <Settings/>}/>
           </div>
           <div>
-            <Friends />
+            <Friends store={props.store} />
           </div>
         </div>
       </BrowserRouter>
