@@ -2,6 +2,15 @@
     padding: 2rem;
 }
 
+.selectedPage {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.pageSelector {
+    cursor: pointer;
+}
+
 .users h3 {
 
     /*border-bottom: 1px solid #6f7408;*/
