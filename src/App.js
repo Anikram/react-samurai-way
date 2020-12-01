@@ -10,6 +10,7 @@ import Settings from "./components/Settings/Settings";
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 const App = (props) => {
@@ -26,6 +27,7 @@ const App = (props) => {
             <Route path='/music' render={() => <Music/>}/>
             <Route path='/news' render={() => <News store={props.store} />}/>
             <Route path='/settings' render={() => <Settings/>}/>
+            <Route path='/users' render={() => <UsersContainer />}/>
           </div>
           <div>
             <Friends store={props.store} />

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './News.module.css';
 
 const News = (props) => {
-  let newsElements = props.store.getState().newsReducer.newsPosts.map(p => {
+  let newsElements = props.store.getState().newsPage.newsPosts.map(p => {
     return (
       <div className={s.newsPost}>
         <h4>{p.title}</h4>
