@@ -13,7 +13,7 @@ let Users = (props) => {
   }
 
   return (
-    <div className={`${s.users} tile`}>
+    <div className={`${s.users}`}>
       <h1>Users page</h1>
 
       {

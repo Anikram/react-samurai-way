@@ -11,6 +11,10 @@
     cursor: pointer;
 }
 
+.preloader {
+    position: absolute;
+}
+
 .users h3 {
 
     /*border-bottom: 1px solid #6f7408;*/
