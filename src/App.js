@@ -7,10 +7,10 @@ import Friends from "./components/Friends/Friends";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
-import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const App = (props) => {
@@ -21,8 +21,8 @@ const App = (props) => {
         <div className={'app-wrapper'}>
           <Navbar/>
           <div className={'app-wrapper-content'}>
-            <Route path='/profile'
-                   render={() => <Profile />}/>
+            <Route path='/profile/:userId?'
+                   render={() => <ProfileContainer />}/>
             <Route path='/dialogs' render={() => <Dialogs store={props.store} />}/>
             <Route path='/music' render={() => <Music/>}/>
             <Route path='/news' render={() => <News store={props.store} />}/>

@@ -1,4 +1,8 @@
-.profileInfoContent {
+.profileContent {
+
+}
+
+.profileBanner {
     background-image: url("https://im0-tub-ru.yandex.net/i?id=c9429ed3fc0171527a0e2f2ffc0ee36c&n=13");
     background-size: cover;
 }
@@ -29,6 +33,43 @@
     padding: 0.5rem;
 }
 
-.nickname {
-
+.info {
+    background: aliceblue;
+    display: flex;
 }
+
+.jobSection {
+    color: #790101;
+
+    width: 50%;
+    padding: 1.5rem;
+    background: #977035;
+    border-radius: 0.5rem;
+    margin: 3rem;
+    text-align: center;
+    line-height: 2rem;
+}
+
+.jobDescription {
+    color: #e9e7db;
+    font-style: italic;
+}
+
+.status {
+    width: 100%;
+    background: #ffb009;
+    padding: 0.5rem 1rem;
+    font-style: italic;
+}
+
+.contacts {
+    background: aliceblue;
+    padding: 1rem;
+    width: 50%;
+}
+
+.contact {
+    padding: 0.5rem 0;
+}
+
+

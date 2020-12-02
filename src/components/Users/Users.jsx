@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./Users.module.css";
 import defaultAvatar from "../../assets/images/male-avatar-placeholder.png";
+import {NavLink} from "react-router-dom";
 
 
 let Users = (props) => {
@@ -18,22 +19,27 @@ let Users = (props) => {
       {
 
         pages.map(p => {
-          return <span onClick={() => {props.onPageChanged(p)}} className={`${props.currentPage === p && s.selectedPage} ${s.pageSelector}`}> {p} </span>})
+          return <span onClick={() => {
+            props.onPageChanged(p)
+          }} className={`${props.currentPage === p && s.selectedPage} ${s.pageSelector}`}> {p} </span>
+        })
       }
 
       {
         props.users.map(u => {
           return (<div className={`${s.user}`} key={u.id}>
-            <div className={`${s.left} ${s.userName}`}>
-              <img src={u.photos.small != null ? u.photos.small : defaultAvatar } alt=''/>
-              <h3 className={s.title}> {u.name} </h3>
-            </div>
+            <NavLink to={`/profile/${u.id}`}>
+              <div className={`${s.left} ${s.userName}`}>
+                <img src={u.photos.small != null ? u.photos.small : defaultAvatar} alt=''/>
+                <h3 className={s.title}> {u.name} </h3>
+              </div>
+            </NavLink>
             <div className={`${s.right}`}>
               <div className={`${s.status}`}>
                 <p> {u.status}</p>
               </div>
               <div className={`${s.location}`}>
-                <p className={`${s.address}`}>  Zoopolis, </p>
+                <p className={`${s.address}`}> Zoopolis, </p>
                 <p className={`${s.address}`}> World Wide </p>
               </div>
             </div>
