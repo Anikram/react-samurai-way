@@ -4,7 +4,7 @@ import s from './Preloader.module.css'
 
 let Preloader = () => {
   return (<div className={s.preloaderContainer}>
-    <img src={preloader}/>
+    <img src={preloader} alt={'preloader image'}/>
   </div>
   )
 }

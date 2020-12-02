@@ -4,16 +4,17 @@ import dialogsReducer from "./dialogsReducer";
 import newsReducer from "./newsReducer";
 import friendsReducer from "./friendsReducer";
 import usersReducer from "./usersReducer";
+import authReducer from "./authReducer";
 
 
 
 let reducers = combineReducers({
-  //profilePage: profileReducer
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   newsPage: newsReducer,
   friendsPage: friendsReducer,
-  usersPage: usersReducer
+  usersPage: usersReducer,
+  auth: authReducer
 });
 
 let store = createStore(reducers);

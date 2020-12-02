@@ -16,3 +16,12 @@
 
 }
 
+.loginBlock {
+    float: right;
+}
+
+.loginBlock a {
+    color: #eae100;
+    text-decoration: none;
+}
+

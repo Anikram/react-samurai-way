@@ -1,4 +1,3 @@
-import React from 'react';
 import {addLike, addPost, updatePostMessage} from "../../../redux/profileReducer";
 import Posts from "./Posts";
 import {connect} from "react-redux";

@@ -13,6 +13,8 @@ const ProfileInfo = (props) => {
   const contactsElements = Object.keys(contacts).map(key => {
       if (contacts[key]) {
         return <div className={s.contact}>{key}: <a href='#'>{contacts[key]}</a></div>
+      } else {
+        return <div className={s.contact}>{key}: </div>
       }
     }
   )

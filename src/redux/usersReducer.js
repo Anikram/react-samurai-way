@@ -59,7 +59,6 @@ const usersReducer = (state = initialState, action) => {
       return state
   }
 
-  return state;
 };
 
 export const follow = (id) => ({type: FOLLOW, userId: id});
