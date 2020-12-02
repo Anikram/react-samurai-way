@@ -44,7 +44,7 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const addLikePostActionCreator = (post_id) => ({type: ADD_LIKE, id: post_id});
-export const updatePostActionCreator = (message) => ({type: UPDATE_POSTS_TEXTAREA, message: message});
+export const addPost = () => ({type: ADD_POST});
+export const addLike = (post_id) => ({type: ADD_LIKE, id: post_id});
+export const updatePostMessage = (message) => ({type: UPDATE_POSTS_TEXTAREA, message: message});
 export default profileReducer;
