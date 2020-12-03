@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./Users.module.css";
 import defaultAvatar from "../../assets/images/male-avatar-placeholder.png";
 import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../api/UsersApi";
 
 
 let Users = (props) => {
@@ -18,10 +19,10 @@ let Users = (props) => {
       <h1>Users page</h1>
       {
 
-        pages.map(p => {
+        pages.map(page => {
           return <span onClick={() => {
-            props.onPageChanged(p)
-          }} className={`${props.currentPage === p && s.selectedPage} ${s.pageSelector}`}> {p} </span>
+            props.onPageChanged(page)
+          }} className={`${props.currentPage === page && s.selectedPage} ${s.pageSelector}`}> {page} </span>
         })
       }
 
@@ -44,12 +45,23 @@ let Users = (props) => {
               </div>
             </div>
             <div className={`${s.actions}`}>
-              {u.followed
-                ? <div onClick={() => {
-                  props.unFollowUser(u.id)
+              {u.followed ? <div onClick={() => {
+
+                  usersAPI.toggleFollow('delete', u.id).then((data) => {
+                      if (data.resultCode === 0) {
+                        props.unFollowUser(u.id)
+                      }
+                    });
+
                 }} className={`${s.button} ${s.unfollow}`}> Un follow </div>
                 : <div onClick={() => {
-                  props.followUser(u.id)
+
+                  usersAPI.toggleFollow('post',u.id).then((data) => {
+                      if (data.resultCode === 0) {
+                        props.followUser(u.id)
+                      }
+                    });
+
                 }} className={`${s.button} ${s.follow}`}> Follow </div>
               }
             </div>
