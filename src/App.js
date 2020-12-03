@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import FriendsContainer from "./components/Friends/FriendsContainer";
 
 
 const App = (props) => {
@@ -30,7 +31,7 @@ const App = (props) => {
             <Route path='/users' render={() => <UsersContainer />}/>
           </div>
           <div>
-            <Friends store={props.store} />
+            <FriendsContainer store={props.store} />
           </div>
         </div>
       </BrowserRouter>

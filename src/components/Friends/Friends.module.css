@@ -2,6 +2,15 @@
     padding: 2rem;
 }
 
+.friends a {
+    color: #362917;
+    text-decoration: none;
+}
+
+.friends a.active {
+    color: goldenrod;
+}
+
 .friends h3 {
     text-align: center;
     border-bottom: 1px solid #6f7408;

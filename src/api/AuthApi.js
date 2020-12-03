@@ -1,5 +1,9 @@
 import axiosInstance from './configApi'
 
-export const getUserProfile = (userId) => {
-  return axiosInstance.get(`profile/${userId}`)
+export const authAPI = {
+  checkUserAuth() {
+    return axiosInstance.get(`auth/me`)
+  },
 }
+
+export default authAPI
