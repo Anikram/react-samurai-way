@@ -113,3 +113,7 @@
     border-radius: 1.5rem;
 }
 
+.disabledButton {
+    pointer-events: none;
+    opacity: 0.4;
+}

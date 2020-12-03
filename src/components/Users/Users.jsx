@@ -3,6 +3,7 @@ import s from "./Users.module.css";
 import defaultAvatar from "../../assets/images/male-avatar-placeholder.png";
 import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../api/UsersApi";
+import {toggleFollowingInProgress} from "../../redux/usersReducer";
 
 
 let Users = (props) => {
@@ -45,24 +46,27 @@ let Users = (props) => {
               </div>
             </div>
             <div className={`${s.actions}`}>
-              {u.followed ? <div onClick={() => {
+              {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                  props.toggleFollowingInProgress(true, u.id);
 
                   usersAPI.toggleFollow('delete', u.id).then((data) => {
-                      if (data.resultCode === 0) {
-                        props.unFollowUser(u.id)
-                      }
-                    });
+                    if (data.resultCode === 0) {
+                      props.unFollowUser(u.id)
+                    }
+                    props.toggleFollowingInProgress(false, u.id);
+                  });
 
-                }} className={`${s.button} ${s.unfollow}`}> Un follow </div>
-                : <div onClick={() => {
+                }} className={`${s.button} ${s.unfollow}`}> Un follow </button>
+                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                  props.toggleFollowingInProgress(true, u.id);
+                  usersAPI.toggleFollow('post', u.id).then((data) => {
+                    if (data.resultCode === 0) {
+                      props.followUser(u.id)
+                    }
+                    props.toggleFollowingInProgress(false, u.id);
+                  });
 
-                  usersAPI.toggleFollow('post',u.id).then((data) => {
-                      if (data.resultCode === 0) {
-                        props.followUser(u.id)
-                      }
-                    });
-
-                }} className={`${s.button} ${s.follow}`}> Follow </div>
+                }} className={`${s.button} ${s.follow}`}> Follow </button>
               }
             </div>
 
