@@ -2,6 +2,7 @@ import React from 'react'
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
+import {withConnectedAuthRedirect} from '../../hoc/withConnectedAuthRedirect'
 
 
 
@@ -10,12 +11,9 @@ class DialogsContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.isAuth) return <Redirect to={'/login'}/>
-
     return (
       <Dialogs
         dialogs = {this.props.dialogs}
-        isAuth = {this.props.isAuth}
       />
     )
   }
@@ -24,8 +22,9 @@ class DialogsContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     dialogs: state.dialogsPage.dialogs,
-    isAuth: state.auth.isAuth
   }
 }
 
-export default connect(mapStateToProps,{})(DialogsContainer)
+let ConnectedAuthRedirectComponent = withConnectedAuthRedirect(DialogsContainer)
+
+export default connect(mapStateToProps,{})(ConnectedAuthRedirectComponent)
