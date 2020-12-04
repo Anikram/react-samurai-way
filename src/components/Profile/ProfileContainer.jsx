@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {setUserProfile} from "../../redux/profileReducer";
+import {getUserProfile, setUserProfile} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
-import profileAPI from "../../api/profileApi";
 
 //This is class container component for side effects *inner container layer*
 class ProfileContainer extends React.Component {
@@ -13,9 +12,8 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    profileAPI.getUserProfile(userId).then((response) => {
-      this.props.setUserProfile(response.data);
-    });
+
+    this.props.getUserProfile(userId);
 
   }
 
@@ -35,5 +33,5 @@ let mapStateToProps = (state) => ({
 let WithRouterContainerComponent = withRouter(ProfileContainer);
 
 export default connect(mapStateToProps, {
-  setUserProfile,
+  getUserProfile
 })(WithRouterContainerComponent);

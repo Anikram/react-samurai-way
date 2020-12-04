@@ -1,3 +1,5 @@
+import profileAPI from "../api/profileApi";
+
 const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD-LIKE';
 const UPDATE_POSTS_TEXTAREA = 'UPDATE-POSTS-TEXTAREA';
@@ -54,5 +56,13 @@ const profileReducer = (state = initialState, action) => {
 export const addPost = () => ({type: ADD_POST});
 export const addLike = (post_id) => ({type: ADD_LIKE, id: post_id});
 export const updatePostMessage = (message) => ({type: UPDATE_POSTS_TEXTAREA, message: message});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+export const getUserProfile = (userId) => {
+  return (dispatch) => {
+    profileAPI.getUserProfile(userId).then((response) => {
+      dispatch(setUserProfile(response.data));
+    });
+  }
+}
 export default profileReducer;
