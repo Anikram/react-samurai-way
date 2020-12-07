@@ -2,8 +2,6 @@ import React from 'react';
 import s from "./Users.module.css";
 import defaultAvatar from "../../assets/images/male-avatar-placeholder.png";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/UsersApi";
-import {toggleFollowingInProgress} from "../../redux/usersReducer";
 
 
 let Users = (props) => {
@@ -47,26 +45,13 @@ let Users = (props) => {
             </div>
             <div className={`${s.actions}`}>
               {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+
                 props.unfollowUser(u.id);
-                  // props.toggleFollowingInProgress(true, u.id);
-                  //
-                  // usersAPI.unfollow(u.id).then((data) => {
-                  //   if (data.resultCode === 0) {
-                  //     props.unFollow(u.id)
-                  //   }
-                  //   props.toggleFollowingInProgress(false, u.id);
-                  // });
 
                 }} className={`${s.button} ${s.unfollow}`}> Un follow </button>
                 : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+
                   props.followUser(u.id);
-                  // props.toggleFollowingInProgress(true, u.id);
-                  // usersAPI.follow( u.id).then((data) => {
-                  //   if (data.resultCode === 0) {
-                  //     props.followUser(u.id)
-                  //   }
-                  //   props.toggleFollowingInProgress(false, u.id);
-                  // });
 
                 }} className={`${s.button} ${s.follow}`}> Follow </button>
               }

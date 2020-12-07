@@ -1,8 +1,8 @@
 import React from 'react'
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
 import {withConnectedAuthRedirect} from '../../hoc/withConnectedAuthRedirect'
+import {compose} from "redux";
 
 
 
@@ -25,6 +25,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-let ConnectedAuthRedirectComponent = withConnectedAuthRedirect(DialogsContainer)
+export default compose(
+  connect(mapStateToProps,{}),
+    withConnectedAuthRedirect
+)(DialogsContainer);
 
-export default connect(mapStateToProps,{})(ConnectedAuthRedirectComponent)
