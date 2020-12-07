@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import defaultAvatar from '../../../assets/images/male-avatar-placeholder.png'
 import Preloader from "../../Common/Preloader/Preloader";
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -9,7 +10,6 @@ const ProfileInfo = (props) => {
   }
 
   let contacts = props.profile.contacts;
-
   const contactsElements = Object.keys(contacts).map(key => {
       if (contacts[key]) {
         return <div className={s.contact}>{key}: <a href='#'>{contacts[key]}</a></div>
@@ -33,7 +33,7 @@ const ProfileInfo = (props) => {
         </div>
       </div>
 
-      <div className={s.status}>{props.profile.aboutMe}</div>
+      <ProfileStatus status={props.profile.aboutMe}/>
 
       <div className={s.info}>
         <div className={s.contacts}>

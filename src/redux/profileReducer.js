@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD-LIKE';
 const UPDATE_POSTS_TEXTAREA = 'UPDATE-POSTS-TEXTAREA';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+// const SET_USER_STATUS = 'SET-USER-STATUS';
 
 let initialState = {
   posts: [
@@ -48,6 +49,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         profile: action.profile
       }
+    // case SET_USER_STATUS:
+    //   return {
+    //     ...state,
+    //     profile.status: action.profile
+    //   }
     default:
       return state;
   }
@@ -56,6 +62,7 @@ const profileReducer = (state = initialState, action) => {
 export const addPost = () => ({type: ADD_POST});
 export const addLike = (post_id) => ({type: ADD_LIKE, id: post_id});
 export const updatePostMessage = (message) => ({type: UPDATE_POSTS_TEXTAREA, message: message});
+// const setUserStatus = (userId, status) => ({type: SET_USER_STATUS, userId, status});
 const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export const getUserProfile = (userId) => {
@@ -65,4 +72,12 @@ export const getUserProfile = (userId) => {
     });
   }
 }
+
+// export const setUserStatus = (userId) => {
+//   return (dispatch) => {
+//     profileAPI.getUserStatus(userId).then((response) => {
+//       dispatch(setUserStatus(response.data));
+//     })
+//   }
+// }
 export default profileReducer;

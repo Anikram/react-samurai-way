@@ -19,6 +19,7 @@ class ProfileContainer extends React.Component {
   }
 
 //this is render of presentational component *clear component*
+
   render() {
     return (
       <Profile {...this.props} profile={this.props.profile}/>
