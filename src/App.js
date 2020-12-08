@@ -11,6 +11,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import LoginPage from "./components/Login/Login";
+import LogoutPage from "./components/Login/Logout";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
@@ -30,6 +31,7 @@ const App = (props) => {
             <Route path='/settings' render={() => <Settings/>}/>
             <Route path='/users' render={() => <UsersContainer />}/>
             <Route path='/login' render={() => <LoginPage />}/>
+            <Route path='/logout' render={() => <LogoutPage />}/>
           </div>
           <div>
             <FriendsContainer store={props.store} />

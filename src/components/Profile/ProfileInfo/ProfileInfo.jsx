@@ -10,11 +10,11 @@ const ProfileInfo = (props) => {
   }
 
   let contacts = props.profile.contacts;
-  const contactsElements = Object.keys(contacts).map(key => {
+  const contactsElements = Object.keys(contacts).map((key, index) => {
       if (contacts[key]) {
-        return <div className={s.contact}>{key}: <a href='#'>{contacts[key]}</a></div>
+        return <div className={s.contact} key={index}>{key}: <button >{contacts[key]}</button></div>
       } else {
-        return <div className={s.contact}>{key}: </div>
+        return <div className={s.contact} key={index}>{key}: </div>
       }
     }
   )

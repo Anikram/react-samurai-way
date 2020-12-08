@@ -22,18 +22,20 @@ const friendsReducer = (state = initialState, action) => {
         ...state,
         friends: action.friends
       }
+    default:
+      return state;
+
   }
-  return  state;
 };
 
-export const getFriends = ( friends) => ({type:GET_FRIENDS, friends});
+export const getFriends = (friends) => ({type: GET_FRIENDS, friends});
 
-export const getUserFriends = (friendsNumber,pageNumber) => {
+export const getUserFriends = (friendsNumber, pageNumber) => {
   return (dispatch) => {
-    friendsAPI.fetchUserFriends(friendsNumber,pageNumber).then((data) => {
+    friendsAPI.fetchUserFriends(friendsNumber, pageNumber).then((data) => {
       dispatch(getFriends(data.items))
     })
   }
 }
 
-export default  friendsReducer;
+export default friendsReducer;
