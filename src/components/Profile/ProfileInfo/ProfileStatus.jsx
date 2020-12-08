@@ -5,19 +5,21 @@ class ProfileStatus extends React.Component {
 
   state = {
     editMode: false,
-    localStatus: 'This is the status'
+    localStatus: this.props.status
   }
 
-  activateEditMode() {
+  activateEditMode = () => {
     this.setState({
       editMode: true
     })
   }
 
-  deactivateEditMode() {
+  deactivateEditMode = (e) => {
     this.setState({
       editMode: false
-    })
+    });
+
+    this.props.updateUserStatus(this.state.localStatus)
   }
 
   updateLocalStatus = (e) => {
@@ -28,7 +30,7 @@ class ProfileStatus extends React.Component {
       this.deactivateEditMode();
     }
   }
-  changeLocalStatus = (e) => {
+  onLocalStatusChange = (e) => {
     this.setState({
       localStatus: e.target.value
     })
@@ -39,13 +41,13 @@ class ProfileStatus extends React.Component {
       <>
         {!this.state.editMode &&
         <div className={s.status}>
-          <span onDoubleClick={this.activateEditMode.bind(this)}>{this.state.localStatus}</span>
+          <span onDoubleClick={this.activateEditMode}>{this.props.status || '-------'}</span>
         </div>
         }
         {this.state.editMode &&
         <div className={s.status}>
-          <input autoFocus={true} onChange={this.changeLocalStatus.bind(this)}
-                 onBlur={this.deactivateEditMode.bind(this)} onKeyPress={this.updateLocalStatus.bind(this)}
+          <input autoFocus={true} onChange={this.onLocalStatusChange}
+                 onBlur={this.deactivateEditMode} onKeyPress={this.updateLocalStatus}
                  value={this.state.localStatus}/>
         </div>
         }

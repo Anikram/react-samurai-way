@@ -6,7 +6,10 @@ const profileAPI = {
     return axiosInstance.get(`profile/${userId}`);
   },
   getUserStatus(userId) {
-    return axiosInstance.get(`profile/status/${userId}`)
+    return axiosInstance.get(`profile/status/${userId}`);
+  },
+  updateUserStatus(status) {
+    return axiosInstance.put(`profile/status/`, {status})
   }
 }
 

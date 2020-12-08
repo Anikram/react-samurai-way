@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getUserProfile, setUserProfile} from "../../redux/profileReducer";
+import {getUserProfile, getUserStatus, setUserProfile, updateUserStatus} from "../../redux/profileReducer";
 import {Redirect, withRouter} from "react-router-dom";
 import {withConnectedAuthRedirect} from "../../hoc/withConnectedAuthRedirect";
 import {compose} from "redux";
@@ -16,13 +16,16 @@ class ProfileContainer extends React.Component {
     }
 
     this.props.getUserProfile(userId);
+
+    this.props.getUserStatus(userId);
   }
 
 //this is render of presentational component *clear component*
 
   render() {
     return (
-      <Profile {...this.props} profile={this.props.profile}/>
+      <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+               updateUserStatus={this.props.updateUserStatus}/>
     )
   }
 };
@@ -30,10 +33,11 @@ class ProfileContainer extends React.Component {
 //This is react-redux wrapper for store access *outer container layer*
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  status: state.profilePage.status
 });
 
 export default compose(
-    connect(mapStateToProps, {getUserProfile}),
-    withRouter,
-    withConnectedAuthRedirect
+  connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus}),
+  withRouter,
+  withConnectedAuthRedirect
 )(ProfileContainer);
