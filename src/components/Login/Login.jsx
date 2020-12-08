@@ -10,7 +10,7 @@ const Login = (props) => {
   if (!props.isAuth) <Redirect to={'/login'}/>
   if (props.isAuth) <Redirect to={'/profile'}/>
 
-  const onSubmit=(formData) => {
+  const onSubmit = (formData) => {
     props.loginUser(formData)
   }
 

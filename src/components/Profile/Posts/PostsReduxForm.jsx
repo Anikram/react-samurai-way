@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
 import s from "./Posts.module.css";
 
 
@@ -19,6 +19,10 @@ const PostsForm = (props) => {
   )
 }
 
-const PostsReduxForm = reduxForm({form: 'LoginForm'})(PostsForm);
+const afterSubmit = (result, dispatch) => {
+  dispatch(reset('PostsForm'))
+}
+
+const PostsReduxForm = reduxForm({form: 'PostsForm',onSubmitSuccess: afterSubmit})(PostsForm);
 
 export default PostsReduxForm;

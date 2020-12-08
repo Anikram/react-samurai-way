@@ -2,6 +2,7 @@ import React from 'react';
 import MessageLeft from "./Message/MessageLeft";
 import MessageRight from "./Message/MessageRight";
 import s from './Messages.module.css'
+import MessagesReduxForm from "./MessagesReduxForm";
 
 const Messages = (props) => {
 
@@ -14,20 +15,19 @@ const Messages = (props) => {
       }
     });
 
-  let onSendMessageClick = () => {
-    props.sendMessage();
+  let onSendMessageClick = (formData) => {
+    props.sendMessage(formData.newMessageText);
   }
 
-  let onMessageTextChange = (e) => {
-    let message = e.target.value;
-    props.changeMessageText(message);
-  }
+  // let onMessageTextChange = (e) => {
+  //   let message = e.target.value;
+  //   props.changeMessageText(message);
+  // }
 
   return (
     <div className={s.messages}>
       {messagesElements}
-      <textarea onChange={onMessageTextChange} value={props.newMessageText}/>
-      <button onClick={onSendMessageClick}>Send</button>
+      <MessagesReduxForm onSubmit={onSendMessageClick}/>
     </div>
   )
 };
