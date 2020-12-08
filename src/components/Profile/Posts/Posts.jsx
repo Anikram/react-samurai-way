@@ -15,20 +15,8 @@ const Posts = (props) => {
                                likeCount={p.likeCount}
     />);
 
-  let newPostElement = React.createRef();
-
   let onSubmit = (formData) => {
-    console.log(formData)
-    props.addPost(formData);
-  }
-
-  let onAddPost = () => {
-    props.addPost();
-  }
-
-  let onPostChange = () => {
-    let message = newPostElement.current.value;
-    props.updatePostMessage(message);
+    props.addPost(formData.newPostText);
   }
 
   return (

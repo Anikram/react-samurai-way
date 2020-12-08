@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_MESSAGES_TEXTAREA = 'UPDATE-MESSAGES-TEXTAREA';
 
 let initialState = {
   dialogs: [
@@ -16,8 +15,7 @@ let initialState = {
     {id: 3, message: 'Why are you?'},
     {id: 4, message: 'When are you?'},
     {id: 5, message: 'How are you?'},
-  ],
-  newMessageText: ""
+  ]
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -28,20 +26,12 @@ const dialogsReducer = (state = initialState, action) => {
         messages: [...state.messages, {
           id: (state.messages.length + 1),
           message: action.newMessageText
-        }],
-        newMessageText: ''
+        }]
       };
-
-    case UPDATE_MESSAGES_TEXTAREA:
-      return {
-        ...state,
-        newMessageText: action.message
-      }
     default:
       return state;
   }
 };
 
 export const sendMessage = (newMessageText) => ({type: ADD_MESSAGE, newMessageText});
-export const changeMessageText = (message) => ({type: UPDATE_MESSAGES_TEXTAREA, message: message});
 export default dialogsReducer;

@@ -2,7 +2,6 @@ import profileAPI from "../api/profileApi";
 
 const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD-LIKE';
-const UPDATE_POSTS_TEXTAREA = 'UPDATE-POSTS-TEXTAREA';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_USER_STATUS = 'SET-USER-STATUS';
 
@@ -15,7 +14,6 @@ let initialState = {
     {id: 5, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sed?', likeCount: 233},
     {id: 6, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sed?', likeCount: 14},
   ],
-  newPostText: "",
   profile: null,
   status: ''
 };
@@ -27,16 +25,10 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         posts: [...state.posts, {
           id: (state.posts.length + 1),
-          message: action.formData['newPostText'],
+          message: action.newPostText,
           likeCount: 0
         }],
-        newPostText: ''
       }
-    case UPDATE_POSTS_TEXTAREA:
-      return {
-        ...state,
-        newPostText: action.message
-      };
     case ADD_LIKE: {
       let stateCopy = {
         ...state,
@@ -60,9 +52,8 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPost = (formData) => ({type: ADD_POST, formData});
+export const addPost = (newPostText) => ({type: ADD_POST, newPostText});
 export const addLike = (post_id) => ({type: ADD_LIKE, id: post_id});
-export const updatePostMessage = (message) => ({type: UPDATE_POSTS_TEXTAREA, message: message});
 const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
