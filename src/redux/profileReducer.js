@@ -26,8 +26,8 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...state.posts, {
-          id: 5,
-          message: state.newPostText,
+          id: (state.posts.length + 1),
+          message: action.formData['newPostText'],
           likeCount: 0
         }],
         newPostText: ''
@@ -60,7 +60,7 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPost = () => ({type: ADD_POST});
+export const addPost = (formData) => ({type: ADD_POST, formData});
 export const addLike = (post_id) => ({type: ADD_LIKE, id: post_id});
 export const updatePostMessage = (message) => ({type: UPDATE_POSTS_TEXTAREA, message: message});
 const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
