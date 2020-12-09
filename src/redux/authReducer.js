@@ -47,7 +47,7 @@ const updateErrors = (errors) => ({type: UPDATE_ERRORS, errors})
 //auth me thunk creator
 export const fetchUserProfile = () => {
   return (dispatch) => {
-    authAPI.checkUserAuth()
+    return authAPI.checkUserAuth()
       .then((response) => {
         if (response.data.resultCode === 0) {
           let {id, login, email} = response.data.data;
