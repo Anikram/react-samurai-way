@@ -15,3 +15,10 @@
 .formControl.error span {
     color: red;
 }
+
+.formGroupError {
+    /*border: 2px Solid red;*/
+    padding: 5px;
+    color: red;
+    width: 30%;
+}

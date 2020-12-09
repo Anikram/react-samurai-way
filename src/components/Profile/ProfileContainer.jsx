@@ -9,15 +9,11 @@ import {compose} from "redux";
 //This is class container component for side effects *inner container layer*
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    // let userId = this.props.match.params.userId;
+    let userId = this.props.match.params.userId;
 
-    // if (!userId) {
-    //   userId = 2;
-    // }
+    this.props.getUserProfile(userId || this.props.userId);
 
-    this.props.getUserProfile(this.props.userId);
-
-    this.props.getUserStatus(this.props.userId);
+    this.props.getUserStatus(userId || this.props.userId);
   }
 
 //this is render of presentational component *clear component*
@@ -34,7 +30,9 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
-  userId: state.auth.userId
+  userId: state.auth.userId,
+  isAuth: state.auth.isAuth
+
 });
 
 export default compose(

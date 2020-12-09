@@ -1,10 +1,9 @@
 import authAPI from "../api/AuthApi";
+import {stopSubmit} from "redux-form";
 
-// const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const SET_AUTH_USER_DATA = 'SET-USER-DATA';
-const DELETE_AUTH_USER_DATA = 'DELETE-USER-DATA';
 const UPDATE_ERRORS = 'UPDATE-ERRORS';
-
+const STORE_CAPTCHA = 'STORE-CAPTCHA';
 
 let initialState = {
   userId: null,
@@ -12,6 +11,7 @@ let initialState = {
   login: null,
   isFetching: false,
   isAuth: false,
+  captchaUrl: '',
   errors: []
 };
 
@@ -20,62 +20,65 @@ const authReducer = (state = initialState, action) => {
     case SET_AUTH_USER_DATA:
       return {
         ...state,
-        ...action.data,
-        isAuth: true
-      }
-    case DELETE_AUTH_USER_DATA:
-      return {
-        ...state,
-        isAuth: false,
-        userId: null,
-        email: null,
-        login: null
+        ...action.payload,
+        captchaUrl: ''
       }
     case UPDATE_ERRORS:
-    return {
-      ...state,
-      errors: [action.errors]
-    }
+      return {
+        ...state,
+        errors: [action.errors]
+      }
+    case STORE_CAPTCHA:
+      return {
+        ...state,
+        captchaUrl: action.url
+      }
     default:
       return state
   }
 };
-export const setAuthUserData = (userId,login,email) => ({type: SET_AUTH_USER_DATA, data: {userId,login,email}});
+export const setAuthUserData = (userId, login, email, isAuth) => ({
+  type: SET_AUTH_USER_DATA,
+  payload: {userId, login, email, isAuth}
+});
+const storeCaptchaUrl = (url) => ({type: STORE_CAPTCHA, url})
 const updateErrors = (errors) => ({type: UPDATE_ERRORS, errors})
-const deleteAuthUserData = () => ({type: DELETE_AUTH_USER_DATA})
 
 //auth me thunk creator
 export const fetchUserProfile = () => {
   return (dispatch) => {
     authAPI.checkUserAuth()
       .then((response) => {
-        if (response.data.resultCode === 0){
+        if (response.data.resultCode === 0) {
           let {id, login, email} = response.data.data;
-          dispatch(setAuthUserData(id, login, email));
+          dispatch(setAuthUserData(id, login, email, true));
         }
       });
   }
 }
 
 //auth login thunk creator
-export const loginUser = (formData) => {
-  return (dispatch) => {
-    authAPI.loginUserAuth(formData).then(response => {
-      if (response.data.resultCode === 0) {
-        console.log(`OK - User id#${response.data.userId} is logged in!`)
-        dispatch(setAuthUserData(response.data.data.userId, formData.email, formData.password));
-      } else {
-        dispatch(updateErrors(response.data.messages))
-      }
-    })
-  }
+export const loginUser = (formData) => (dispatch) => {
+  authAPI.login(formData).then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(fetchUserProfile());
+    } else if (response.data.resultCode === 10) {
+      authAPI.getCaptcha().then(response => {
+        dispatch(storeCaptchaUrl(response.data.url))
+      })
+    } else {
+      let message = response.data.messages.length > 0 ? [...response.data.messages] : 'Error';
+      dispatch(stopSubmit('loginForm', {_error: message}))
+    }
+  })
 }
+
 
 export const logoutUser = () => {
   return (dispatch) => {
-    authAPI.logoutUserAuth().then(response => {
+    authAPI.logout().then(response => {
       if (response.data.resultCode === 0) {
-        dispatch(deleteAuthUserData());
+        dispatch(setAuthUserData(null, null, null, false));
       }
     })
   }
