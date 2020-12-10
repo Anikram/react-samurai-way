@@ -27,13 +27,15 @@ class ProfileContainer extends React.Component {
 };
 
 //This is react-redux wrapper for store access *outer container layer*
-let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile,
-  status: state.profilePage.status,
-  userId: state.auth.userId,
-  isAuth: state.auth.isAuth
+let mapStateToProps = (state) => {
+  return ({
+    profile: state.profilePage.profile,
+    status: state.profilePage.status,
+    userId: state.auth.userId,
+    isAuth: state.auth.isAuth
 
-});
+  });
+}
 
 export default compose(
   connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus}),

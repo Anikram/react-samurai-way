@@ -65,5 +65,5 @@ export default compose(
     followUser: followUser,
     unfollowUser: unfollowUser,
   }),
-  // withConnectedAuthRedirect
+  withConnectedAuthRedirect
 )(UsersContainer);
