@@ -90,7 +90,7 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
 });
 
 //Thunk creators
-export const getUsers = (currentPage, pageSize) => {
+export const fetchUsers = (currentPage, pageSize) => {
   return (dispatch) => {
       dispatch(toggleIsFetching(true));
       usersAPI.getUsers(currentPage, pageSize).then((data) => {
