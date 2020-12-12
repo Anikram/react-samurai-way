@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import PostsReduxForm from "./PostsReduxForm";
 
 
-const Posts = (props) => {
+const Posts = React.memo(props => {
   let addLike = (postId) => {
     props.addLike(postId);
   }
@@ -28,6 +28,6 @@ const Posts = (props) => {
       </div>
     </div>
   )
-};
+});
 
 export default Posts;

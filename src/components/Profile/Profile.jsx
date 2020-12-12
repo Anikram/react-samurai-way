@@ -6,7 +6,7 @@ import PostsContainer from "./Posts/PostsContainer";
 const Profile = (props) => {
   return (
     <div className={s.profileContent + ' border tile'}>
-      <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}/>
+      <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} statusEditable={props.statusEditable}/>
       <PostsContainer />
     </div>
   )

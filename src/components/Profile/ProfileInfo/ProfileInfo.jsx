@@ -20,6 +20,10 @@ const ProfileInfo = (props) => {
     }
   )
 
+  // let updateStatus = () => {
+  //   return props.profile === && props.updateUserStatus
+  // }
+
   return (
     <div className={s.profileContent}>
       <div className={s.profileBanner}>
@@ -34,7 +38,7 @@ const ProfileInfo = (props) => {
         </div>
       </div>
 
-      <ProfileStatusHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
+      <ProfileStatusHooks status={props.status} updateUserStatus={props.updateUserStatus} statusEditable={props.statusEditable}/>
 
       <div className={s.info}>
         <div className={s.contacts}>
