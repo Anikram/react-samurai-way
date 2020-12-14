@@ -3,8 +3,9 @@ import s from './Posts.module.css';
 import Post from "./Post/Post";
 import PostsReduxForm from "./PostsReduxForm";
 
+const Posts = React.memo((props) => {
+  console.log('POSTS: render()')
 
-const Posts = React.memo(props => {
   let addLike = (postId) => {
     props.addLike(postId);
   }

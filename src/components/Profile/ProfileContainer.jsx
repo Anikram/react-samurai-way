@@ -7,13 +7,9 @@ import {withConnectedAuthRedirect} from "../../hoc/withConnectedAuthRedirect";
 import {compose} from "redux";
 
 //This is class container component for side effects *inner container layer*
-class ProfileContainer extends React.Component {
+class ProfileContainer extends React.PureComponent {
   state = {
     statusEditable: true
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps !== this.props || nextState !== this.state
   }
 
   statusEditableCheck() {
