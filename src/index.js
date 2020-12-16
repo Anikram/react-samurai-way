@@ -5,14 +5,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 
 
 // let renderEntireTree = () => {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-      <App store={store}/>
-        {/*store={store} dispatch={store.dispatch.bind(store)}*/}
+        <BrowserRouter>
+          <App store={store}/>
+        </BrowserRouter>
       </Provider>
     </React.StrictMode>,
     document.getElementById('root')

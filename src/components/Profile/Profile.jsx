@@ -4,10 +4,17 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/PostsContainer";
 
 const Profile = React.memo((props) => {
-  console.log('PROFILE: render()')
   return (
     <div className={s.profileContent + ' border tile'}>
-      <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} statusEditable={props.statusEditable}/>
+      <ProfileInfo profile={props.profile}
+                   status={props.status}
+                   updateUserStatus={props.updateUserStatus}
+                   statusEditable={props.statusEditable}
+                   followUser={props.followUser}
+                   unfollowUser={props.unfollowUser}
+                   followingInProgress={props.followingInProgress}
+                   friendProfile={props.friendProfile}
+                   friendData={props.friendData}/>
       <PostsContainer />
     </div>
   )

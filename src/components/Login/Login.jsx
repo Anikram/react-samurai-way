@@ -3,23 +3,21 @@ import {Redirect} from "react-router-dom";
 import LoginReduxForm from "./LoginForm";
 import {connect} from "react-redux";
 import {loginUser} from "../../redux/authReducer";
-import s from "./Login.module.css";
 
 
-const Login = (props) => {
+const Login = ({isAuth, loginUser, captchaUrl}) => {
 
-  // if (!props.isAuth) <Redirect to={'/login'}/>
-  if (props.isAuth) return <Redirect to={'/profile'}/>
+  if (isAuth) return <Redirect to={'/profile'}/>
 
   const onSubmit = (formData) => {
-    props.loginUser(formData)
+    loginUser(formData)
   }
 
   return <div className={'tile'}>
     <h1>Login Page</h1>
     <LoginReduxForm
       onSubmit={onSubmit}
-      captchaUrl={props.captchaUrl}
+      captchaUrl={captchaUrl}
     />
   </div>
 }

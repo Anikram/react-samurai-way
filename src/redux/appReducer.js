@@ -1,6 +1,6 @@
 import {fetchUserProfile} from "./authReducer";
 
-const INITIALIZATION_SUCCESS = "INITIALIZATION-SUCCESS";
+const INITIALIZATION_SUCCESS = "/app/INITIALIZATION-SUCCESS";
 
 const initialState = {
   initialized: false

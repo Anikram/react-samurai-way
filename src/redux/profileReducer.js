@@ -1,9 +1,11 @@
 import profileAPI from "../api/profileApi";
 
-const ADD_POST = 'ADD-POST';
-const ADD_LIKE = 'ADD-LIKE';
-const SET_USER_PROFILE = 'SET-USER-PROFILE';
-const SET_USER_STATUS = 'SET-USER-STATUS';
+const ADD_POST = '/profile/ADD-POST';
+const DELETE_POST = '/profile/DELETE-POST';
+const ADD_LIKE = '/profile/ADD-LIKE';
+const SET_USER_PROFILE = '/profile/SET-USER-PROFILE';
+const SET_USER_STATUS = '/profile/SET-USER-STATUS';
+const SET_FRIENDS = '/profile/SET-FRIENDS'
 
 let initialState = {
   posts: [
@@ -15,7 +17,8 @@ let initialState = {
     {id: 6, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sed?', likeCount: 14},
   ],
   profile: null,
-  status: ''
+  status: '',
+  friends: []
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -28,6 +31,11 @@ const profileReducer = (state = initialState, action) => {
           message: action.newPostText,
           likeCount: 0
         }],
+      }
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: [...state.posts.filter(p => p.id !== action.postId),]
       }
     case ADD_LIKE: {
       let stateCopy = {
@@ -47,40 +55,42 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         status: action.status
       }
+    case SET_FRIENDS:
+      return {
+        ...state,
+        friends: action.friends
+      }
     default:
       return state;
   }
 };
 
 export const addPost = (newPostText) => ({type: ADD_POST, newPostText});
+export const deletePost = (postId) => ({type: DELETE_POST, postId})
 export const addLike = (post_id) => ({type: ADD_LIKE, id: post_id});
 const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+const setFriends = (friends) => ({type: SET_FRIENDS, friends});
 
-export const getUserProfile = (userId) => {
-  return (dispatch) => {
-    profileAPI.getUserProfile(userId).then((response) => {
-      dispatch(setUserProfile(response.data));
-    });
+export const getUserProfile = (userId) => async (dispatch) => {
+  let response = await profileAPI.getUserProfile(userId);
+  dispatch(setUserProfile(response.data));
+}
+
+export const getUserStatus = (userId) => async (dispatch) => {
+  let response = await profileAPI.getUserStatus(userId);
+  dispatch(setUserStatus(response.data));
+}
+
+export const updateUserStatus = (status) => async (dispatch) => {
+  let response = await profileAPI.updateUserStatus(status);
+  if (response.data.resultCode === 0) {
+    dispatch(setUserStatus(status));
   }
 }
 
-export const getUserStatus = (userId) => {
-  return (dispatch) => {
-    profileAPI.getUserStatus(userId).then((response) => {
-      dispatch(setUserStatus(response.data));
-    });
-  }
+export const setFriendsForUser = (friends) => (dispatch) => {
+  dispatch(setFriends(friends))
 }
 
-export const updateUserStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateUserStatus(status)
-      .then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(setUserStatus(status));
-      }
-    });
-  }
-}
 export default profileReducer;

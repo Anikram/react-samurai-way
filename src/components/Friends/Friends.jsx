@@ -4,18 +4,22 @@ import defaultAvatar from '../../assets/images/male-avatar-placeholder.png'
 import {NavLink} from "react-router-dom";
 
 
-const Friends = (props) => {
+const Friends = ({friends}) => {
 
-  const Friend = (props) => {
+  const Friend = ({id, avatar, name, ...props}) => {
     return (
-      <NavLink to={`/profile/${props.id}`}>
-        <div className={s.friend}>{props.avatar ? <img src={props.avatar} alt=""/>  : <img src={defaultAvatar} alt=""/>  }
-        <p>{props.name}</p></div>
+      <NavLink to={`/profile/${id}`}>
+        <div className={s.friend} >{avatar ? <img src={avatar} alt=""/>  : <img src={defaultAvatar} alt=""/>  }
+        <p>{name}</p></div>
       </NavLink>
     )
   };
 
-  let friendsElements = props.friends.map(f => <Friend name={f.name} key={f.id} id={f.id} avatar={f.photos.small}/>);
+  let friendsElements = friends.map(f => <Friend name={f.name}
+                                                       key={f.id}
+                                                       id={f.id}
+                                                       avatar={f.photos.small}
+                                                       />);
   return (
     <div className={`${s.friends} tile flex-container`}><h3>Friends</h3>
       {friendsElements}

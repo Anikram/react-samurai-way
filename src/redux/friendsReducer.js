@@ -1,6 +1,8 @@
 import friendsAPI from "../api/friendsApi";
 
-const GET_FRIENDS = 'GET-FRIENDS';
+const GET_FRIENDS = '/friends/GET-FRIENDS';
+const CLEAR_FRIENDS = '/friends/CLEAR-FRIENDS'
+const DELETE_FRIEND ='/friends/DELETE-FRIEND'
 
 let initialState = {
   friends: [
@@ -20,22 +22,37 @@ const friendsReducer = (state = initialState, action) => {
     case GET_FRIENDS:
       return {
         ...state,
-        friends: action.friends
+        friends: [...action.friends]
+      }
+    case CLEAR_FRIENDS:
+      return {
+        ...state,
+        friends: initialState.friends
+      }
+    case DELETE_FRIEND:
+      return {
+        ...state,
+        friends: state.friends.filter(f => f.id !== action.friendId)
       }
     default:
       return state;
-
   }
 };
 
-export const getFriends = (friends) => ({type: GET_FRIENDS, friends});
+ const getFriends = (friends) => ({type: GET_FRIENDS, friends});
+ const clearFriendsOnLogout = () => ({type: CLEAR_FRIENDS})
 
-export const getUserFriends = (friendsNumber, pageNumber) => {
-  return (dispatch) => {
-    friendsAPI.fetchUserFriends(friendsNumber, pageNumber).then((data) => {
-      dispatch(getFriends(data.items))
-    })
-  }
+export const getUserFriends = (friendsNumber = 10, friendsPageNumber = 1) => async (dispatch) => {
+  let response = await friendsAPI.fetchUserFriends(friendsNumber, friendsPageNumber);
+  dispatch(getFriends(response.data.items))
+}
+
+export const clearUserFriendsOnLogout = () => (dispatch) =>{
+   dispatch(clearFriendsOnLogout())
+}
+
+export const updateUserFriends = () => (dispatch) => {
+  dispatch(getUserFriends())
 }
 
 export default friendsReducer;

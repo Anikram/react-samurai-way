@@ -3,21 +3,19 @@ import s from './Posts.module.css';
 import Post from "./Post/Post";
 import PostsReduxForm from "./PostsReduxForm";
 
-const Posts = React.memo((props) => {
-  console.log('POSTS: render()')
-
-  let addLike = (postId) => {
-    props.addLike(postId);
+const Posts = React.memo(({addLike, posts, addPost, ...props }) => {
+  let addLikeToPost = (postId) => {
+    addLike(postId);
   }
 
   let postElements =
-    props.posts.map(p => <Post addLike={addLike}
+    posts.map(p => <Post addLike={addLikeToPost}
                                message={p.message} key={p.id} postId={p.id - 1}
                                likeCount={p.likeCount}
     />);
 
   let onSubmit = (formData) => {
-    props.addPost(formData.newPostText);
+    addPost(formData.newPostText);
   }
 
   return (

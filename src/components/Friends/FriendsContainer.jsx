@@ -2,18 +2,24 @@ import React from 'react'
 import Friends from "./Friends";
 import {getUserFriends} from "../../redux/friendsReducer";
 import {connect} from "react-redux";
+import {withRouter} from 'react-router-dom'
+import {compose} from "redux";
 
 
 
-class FriendsContainer extends React.Component {
+class FriendsContainer extends React.PureComponent {
   componentDidMount() {
     this.props.getUserFriends(this.props.friendsNumber,this.props.pageNumber)
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return nextProps !== this.props || nextState !== this.state
   }
 
   render() {
     return (
       <Friends
-        friends={this.props.friends}
+        friends={this.props.friends} getUserFriends={this.props.getUserFriends}
       />
     )
   }
@@ -27,6 +33,8 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,{
-  getUserFriends
-})(FriendsContainer)
+export default compose(
+  connect(mapStateToProps,{
+  getUserFriends}),
+  withRouter
+)(FriendsContainer)

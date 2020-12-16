@@ -16,15 +16,18 @@ import {
   getUsers
 } from "../../redux/selectors/usersSelectors";
 
-class UsersContainer extends React.Component {
+class UsersContainer extends React.PureComponent {
 
   componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize)
+    const {currentPage, pageSize} = this.props
+    this.props.getUsers(currentPage, pageSize)
   };
 
   onPageChanged = (pageNumber) => {
+
+    const {pageSize} = this.props;
     this.props.setCurrentPage(pageNumber);
-    this.props.getUsers(pageNumber, this.props.pageSize)
+    this.props.getUsers(pageNumber, pageSize)
   }
 
   render() {
@@ -41,6 +44,7 @@ class UsersContainer extends React.Component {
                followingInProgress={this.props.followingInProgress}
                followUser={this.props.followUser}
                unfollowUser={this.props.unfollowUser}
+               deleteUserFriend={this.props.deleteUserFriend}
         />
       </div>
     </>);
@@ -53,7 +57,7 @@ let mapStateToProps = (state) => {
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),
-    followingInProgress: getFollowingInProgress(state),
+    followingInProgress: getFollowingInProgress(state)
 
   };
 };

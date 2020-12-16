@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import {Route, BrowserRouter} from "react-router-dom";
+import {Route,withRouter} from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -16,9 +16,10 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/Common/Preloader/Preloader";
+import {compose} from "redux";
 
 
-class App extends React.Component {
+class App extends React.PureComponent {
   componentDidMount() {
     this.props.initializeApp();
   };
@@ -30,7 +31,6 @@ class App extends React.Component {
 
     return (
       <div>
-        <BrowserRouter>
           <HeaderContainer/>
           <div className={'app-wrapper'}>
             <Navbar/>
@@ -39,7 +39,7 @@ class App extends React.Component {
                      render={() => <ProfileContainer/>}/>
               <Route path='/dialogs' render={() => <DialogsContainer/>}/>
               <Route path='/music' render={() => <Music/>}/>
-              <Route path='/news' render={() => <News store={this.props.store}/>}/>
+              <Route path='/news' render={() => <News newsPosts={this.props.store.getState().newsPage.newsPosts}/>}/>
               <Route path='/settings' render={() => <Settings/>}/>
               <Route path='/users' render={() => <UsersContainer/>}/>
               <Route path='/login' render={() => <LoginPage/>}/>
@@ -49,7 +49,6 @@ class App extends React.Component {
               <FriendsContainer store={this.props.store}/>
             </div>
           </div>
-        </BrowserRouter>
         <Footer/>
       </div>
     );
@@ -62,4 +61,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, {initializeApp}))(App);

@@ -1,63 +1,21 @@
 import React from 'react';
 import s from "./Users.module.css";
-import defaultAvatar from "../../assets/images/male-avatar-placeholder.png";
-import {NavLink} from "react-router-dom";
+import Pagination from "../Common/Paginator/Pagination";
+import User from "./User";
 
 
-let Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-  let pages = [];
-
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-
+let Users = ({currentPage,totalUsersCount,onPageChanged,pageSize,followingInProgress, followUser, unfollowUser,users}) => {
   return (
     <div className={`${s.users}`}>
       <h1>Users page</h1>
+
+      <Pagination currentPage={currentPage}
+                  totalUsersCount={totalUsersCount}
+                  onPageChanged={onPageChanged}
+                  pageSize={pageSize} />
       {
-
-        pages.map(page => {
-          return <span onClick={() => {
-            props.onPageChanged(page)
-          }} className={`${props.currentPage === page && s.selectedPage} ${s.pageSelector}`}> {page} </span>
-        })
-      }
-
-      {
-        props.users.map(u => {
-          return (<div className={`${s.user}`} key={u.id}>
-            <NavLink to={`/profile/${u.id}`}>
-              <div className={`${s.left} ${s.userName}`}>
-                <img src={u.photos.small != null ? u.photos.small : defaultAvatar} alt=''/>
-                <h3 className={s.title}> {u.name} </h3>
-              </div>
-            </NavLink>
-            <div className={`${s.right}`}>
-              <div className={`${s.status}`}>
-                <p> {u.status}</p>
-              </div>
-              <div className={`${s.location}`}>
-                <p className={`${s.address}`}> Zoopolis, </p>
-                <p className={`${s.address}`}> World Wide </p>
-              </div>
-            </div>
-            <div className={`${s.actions}`}>
-              {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-
-                props.unfollowUser(u.id);
-
-                }} className={`${s.button} ${s.unfollow}`}> Un follow </button>
-                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-
-                  props.followUser(u.id);
-
-                }} className={`${s.button} ${s.follow}`}> Follow </button>
-              }
-            </div>
-
-          </div>)
+        users.map(u => {
+          return <User user={u} followingInProgress={followingInProgress} followUser={followUser} unfollowUser={unfollowUser}/>
         })
       }
 

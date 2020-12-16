@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
-import {Input} from "../Common/Forms/FormControls";
+import {createField, Input} from "../Common/Forms/FormControls";
 import s from "./Login.module.css"
 import formStyle from "./../Common/Forms/FormControls.module.css";
 import {
@@ -14,27 +14,21 @@ import {
 const maxLength20 = maxLengthValidatorCreator(20);
 const minLength5 = minLengthValidatorCreator(5);
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
   return (
-    <form className={s.loginForm} onSubmit={props.handleSubmit}>
-      {props.error && <div className={formStyle.formGroupError}>
-        {props.error}
+    <form className={s.loginForm} onSubmit={handleSubmit}>
+      {error && <div className={formStyle.formGroupError}>
+        {error}
       </div>
       }
-      <div>
-        <Field placeholder={'Email'} name={"email"} component={Input} validate={[required, maxLength20, email]}/>
-      </div>
-      <div>
-        <Field placeholder={'Password'} type='password' name={"password"} component={Input}
-               validate={[required, maxLength20, minLength5]}/>
-      </div>
-      <div>
-        <Field name={"rememberMe"} type={"checkbox"} component={Input}/> Remember me
-      </div>
+      {createField('email', 'email', [required, maxLength20, email], Input)}
+      {createField('Password', 'password', [required, maxLength20, minLength5], Input, {type: 'password'})}
+      {createField(null, 'rememberMe', [], Input, {type: 'checkbox'}, 'Remember me')}
+
       <button>Login</button>
-      {props.captchaUrl && <div className={s.captchaDiv}>
+      {captchaUrl && <div className={s.captchaDiv}>
         <img
-          src={props.captchaUrl}
+          src={captchaUrl}
           alt=""/>
         <Field placeholder={'captcha'} name={"captcha"} component={Input} validate={[required]}/>
       </div>}

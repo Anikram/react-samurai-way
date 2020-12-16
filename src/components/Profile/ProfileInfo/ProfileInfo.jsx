@@ -2,43 +2,48 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import defaultAvatar from '../../../assets/images/male-avatar-placeholder.png'
 import Preloader from "../../Common/Preloader/Preloader";
-import ProfileStatus from './ProfileStatus'
 import ProfileStatusHooks from "./ProfileStatusHook";
+import {FollowUnfollowButton} from "../../Common/Buttons/FollowUnfollow";
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({profile, updateUserStatus, statusEditable, status, friendData, ...props}) => {
+  if (!profile) {
     return <Preloader/>
   }
 
-  let contacts = props.profile.contacts;
+  let contacts = profile.contacts;
   const contactsElements = Object.keys(contacts).map((key, index) => {
       if (contacts[key]) {
-        return <div className={s.contact} key={index}>{key}: <button >{contacts[key]}</button></div>
+        return <div className={s.contact} key={index}>{key}: <button>{contacts[key]}</button></div>
       } else {
         return <div className={s.contact} key={index}>{key}: </div>
       }
     }
   )
 
-  // let updateStatus = () => {
-  //   return props.profile === && props.updateUserStatus
-  // }
-
   return (
     <div className={s.profileContent}>
       <div className={s.profileBanner}>
         <div className={s.panel}>
           <div className={s.avatar}>
-            <img src={props.profile.photos.large != null ? props.profile.photos.large : defaultAvatar} alt=''/>
+            <img src={profile.photos.large != null ? profile.photos.large : defaultAvatar} alt=''/>
 
             <div className={s.nickname}>
-              <h5> {props.profile.fullName} </h5>
+              <h5> {profile.fullName} </h5>
             </div>
+
+            { friendData.length ? <FollowUnfollowButton userId={friendData.id}
+                                  followed={friendData.followed}
+                                  followingInProgress={props.followingInProgress}
+                                  unfollowUser={props.unfollowUser}
+                                              followUser={props.followUser}/> : <div></div>
+            }
+
+
           </div>
         </div>
       </div>
 
-      <ProfileStatusHooks status={props.status} updateUserStatus={props.updateUserStatus} statusEditable={props.statusEditable}/>
+      <ProfileStatusHooks status={status} updateUserStatus={updateUserStatus} statusEditable={statusEditable}/>
 
       <div className={s.info}>
         <div className={s.contacts}>
@@ -47,7 +52,7 @@ const ProfileInfo = (props) => {
 
         <div className={s.jobSection}>
           <div className={s.openForHiring}>I'm open for hiring!</div>
-          <div className={s.jobDescription}>"{props.profile.lookingForAJobDescription}"</div>
+          <div className={s.jobDescription}>"{profile.lookingForAJobDescription}"</div>
         </div>
       </div>
 

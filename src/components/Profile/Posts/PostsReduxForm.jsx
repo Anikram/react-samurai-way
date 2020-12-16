@@ -6,12 +6,12 @@ import {Textarea} from "../../Common/Forms/FormControls";
 
 const maxLength15 = maxLengthValidatorCreator(15);
 
-const PostsForm = (props) => {
+const PostsForm = ({handleSubmit, newPostText}) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field className={s.textarea} name={'newPostText'} component={Textarea}
-               value={props.newPostText} validate={[required, maxLength15 ]}/>
+               value={newPostText} validate={[required, maxLength15 ]}/>
       </div>
       <div>
         <button>
