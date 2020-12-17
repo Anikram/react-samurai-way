@@ -4,6 +4,7 @@ import {getUserFriends} from "../../redux/friendsReducer";
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
 import {compose} from "redux";
+import {resetProfile} from "../../redux/profileReducer";
 
 
 
@@ -15,7 +16,8 @@ class FriendsContainer extends React.PureComponent {
   render() {
     return (
       <Friends
-        friends={this.props.friends} getUserFriends={this.props.getUserFriends}
+        friends={this.props.friends}
+        getUserFriends={this.props.getUserFriends} resetProfile={this.props.resetProfile}
       />
     )
   }
@@ -31,6 +33,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps,{
-  getUserFriends}),
+  getUserFriends, resetProfile}),
   withRouter
 )(FriendsContainer)

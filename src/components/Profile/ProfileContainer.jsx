@@ -55,15 +55,15 @@ class ProfileContainer extends React.PureComponent {
 
   render() {
     return (<Profile
-                     profile={this.props.profile}
-                     status={this.props.status}
-                     updateUserStatus={this.props.updateUserStatus}
-                     statusEditable={this.state.statusEditable}
-                     followUser={this.props.followUser}
-                     unfollowUser={this.props.unfollowUser}
-                     followingInProgress={this.props.followingInProgress}
-                     isFriend={this.props.profileIsFriend}
-                     currentUser={this.state.currentUser}
+      profile={this.props.profile}
+      status={this.props.status}
+      updateUserStatus={this.props.updateUserStatus}
+      statusEditable={this.state.statusEditable}
+      followUser={this.props.followUser}
+      unfollowUser={this.props.unfollowUser}
+      followingInProgress={this.props.followingInProgress}
+      isFriend={this.props.profileIsFriend}
+      currentUser={this.state.currentUser}
 
     />)
   }
@@ -82,7 +82,15 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-  connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, isFriend,updateUserFriends, followUser, unfollowUser,}),
+  connect(mapStateToProps, {
+    getUserProfile,
+    getUserStatus,
+    updateUserStatus,
+    isFriend,
+    updateUserFriends,
+    followUser,
+    unfollowUser,
+  }),
   withRouter,
   withConnectedAuthRedirect
 )(ProfileContainer);

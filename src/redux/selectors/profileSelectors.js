@@ -1,5 +1,3 @@
-import {createSelector} from "reselect";
-
 export const selectUserProfile = (state) => {
   return state.profilePage.profile
 }

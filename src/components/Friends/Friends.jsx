@@ -4,11 +4,15 @@ import defaultAvatar from '../../assets/images/male-avatar-placeholder.png'
 import {NavLink} from "react-router-dom";
 
 
-const Friends = ({friends}) => {
+const Friends = ({friends, resetProfile}) => {
 
-  const Friend = ({id, avatar, name, ...props}) => {
+  const setNewProfile = (userId) => {
+    resetProfile(userId)
+  }
+
+  const Friend = ({id, avatar, name, setNewProfile, ...props}) => {
     return (
-      <NavLink to={`/profile/${id}`}>
+      <NavLink to={`/profile/${id}`} onClick={() => setNewProfile(id)} >
         <div className={s.friend} >{avatar ? <img src={avatar} alt=""/>  : <img src={defaultAvatar} alt=""/>  }
         <p>{name}</p></div>
       </NavLink>
@@ -19,6 +23,7 @@ const Friends = ({friends}) => {
                                                        key={f.id}
                                                        id={f.id}
                                                        avatar={f.photos.small}
+                                                 setNewProfile={setNewProfile}
                                                        />);
   return (
     <div className={`${s.friends} tile flex-container`}><h3>Friends</h3>
