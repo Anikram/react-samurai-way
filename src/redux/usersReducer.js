@@ -1,6 +1,7 @@
 import {usersAPI} from "../api/UsersApi";
 import {updateObjectInArray} from "../helpers/objectHelpers";
 import {getUserFriends} from "./friendsReducer";
+import {isFriend} from "./profileReducer";
 
 
 const FOLLOW = '/users/FOLLOW';
@@ -91,6 +92,7 @@ const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) =>
   }
 
   dispatch(getUserFriends())
+  dispatch(isFriend(userId)) //!
 
   dispatch(toggleFollowingInProgress(false, userId));
 }

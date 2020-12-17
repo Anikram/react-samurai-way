@@ -2,10 +2,19 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import defaultAvatar from '../../../assets/images/male-avatar-placeholder.png'
 import Preloader from "../../Common/Preloader/Preloader";
-import ProfileStatusHooks from "./ProfileStatusHook";
+import ProfileStatus from "./ProfileStatus";
 import {FollowUnfollowButton} from "../../Common/Buttons/FollowUnfollow";
 
-const ProfileInfo = ({profile, updateUserStatus, statusEditable, status, isFriend, currentUser, ...props}) => {
+const ProfileInfo = ({
+                       profile,
+                       updateUserStatus,
+                       statusEditable,
+                       status,
+                       profileIsFriend,
+                       authorizedUserId,
+                       updateProfileOnClick,
+                       ...props
+                     }) => {
   if (!profile) {
     return <Preloader/>
   }
@@ -31,11 +40,12 @@ const ProfileInfo = ({profile, updateUserStatus, statusEditable, status, isFrien
               <h5> {profile.fullName} </h5>
             </div>
 
-            { !currentUser ? <FollowUnfollowButton userId={profile.userId}
-                                  followed={isFriend}
-                                  followingInProgress={props.followingInProgress}
-                                  unfollowUser={props.unfollowUser}
-                                              followUser={props.followUser}/> : <div></div>
+            {!(authorizedUserId === profile.userId) ? <FollowUnfollowButton userId={profile.userId}
+                                                                            followed={profileIsFriend}
+                                                                            followingInProgress={props.followingInProgress}
+                                                                            unfollowUser={props.unfollowUser}
+                                                                            followUser={props.followUser}/> :
+              <div></div>
             }
 
 
@@ -43,7 +53,8 @@ const ProfileInfo = ({profile, updateUserStatus, statusEditable, status, isFrien
         </div>
       </div>
 
-      <ProfileStatusHooks status={status} updateUserStatus={updateUserStatus} statusEditable={statusEditable}/>
+      <ProfileStatus status={status} updateUserStatus={updateUserStatus} authorizedUserId={authorizedUserId}
+                     profileId={profile.userId}/>
 
       <div className={s.info}>
         <div className={s.contacts}>

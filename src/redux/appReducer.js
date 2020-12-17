@@ -24,7 +24,6 @@ export const initializeApp = () => (dispatch) => {
   dispatch(fetchUserProfile()).then(() => {
     dispatch(initializingSuccess());
   })
-
 }
 
 export default appReducer;

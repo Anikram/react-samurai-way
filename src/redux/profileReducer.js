@@ -21,7 +21,6 @@ let initialState = {
   ],
   profile: null,
   status: '',
-  friends: [],
   isFriend: false
 };
 
@@ -117,6 +116,8 @@ export const isFriend = (userId) => async (dispatch) => {
 export const resetProfile = (userId) => async (dispatch) => {
   let response = await profileAPI.getUserProfile(userId);
   dispatch(setUserProfile(response.data));
+  dispatch(getUserStatus(userId));
+  dispatch(isFriend(userId));
 }
 
 export default profileReducer;

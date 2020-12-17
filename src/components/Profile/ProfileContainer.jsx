@@ -18,18 +18,17 @@ import {
 //This is class container component for side effects *inner container layer*
 class ProfileContainer extends React.PureComponent {
   state = {
-    statusEditable: true,
-    currentUser: false
+    statusEditable: true
   }
 
-  statusEditableCheck() {
-    if (this.props.match.params.userId) {
+  statusEditableCheck(userId) {
+    if (userId === this.props.authorizedUserId)  {
       this.setState({
-        statusEditable: false
+        statusEditable: true,
       })
     } else {
       this.setState({
-        statusEditable: true
+        statusEditable: false,
       })
     }
   }
@@ -40,14 +39,11 @@ class ProfileContainer extends React.PureComponent {
       userId = this.props.authorizedUserId;
       if (!userId) {
         return <Redirect to='/login'/>
-      } else {
-        this.setState({currentUser: true})
       }
     }
-
     this.props.getUserProfile(userId)
     this.props.getUserStatus(userId)
-    this.statusEditableCheck()
+    this.statusEditableCheck(userId)
     this.props.isFriend(userId)
   }
 
@@ -62,9 +58,8 @@ class ProfileContainer extends React.PureComponent {
       followUser={this.props.followUser}
       unfollowUser={this.props.unfollowUser}
       followingInProgress={this.props.followingInProgress}
-      isFriend={this.props.profileIsFriend}
-      currentUser={this.state.currentUser}
-
+      profileIsFriend={this.props.profileIsFriend}
+      authorizedUserId={this.props.authorizedUserId}
     />)
   }
 }
@@ -77,7 +72,8 @@ let mapStateToProps = (state) => {
     authorizedUserId: getAuthorizedUserProfile(state),
     isAuth: isUserAuthorized(state),
     profileIsFriend: getIsFriend(state),
-    followingInProgress: getFollowingInProgress(state)
+    followingInProgress: getFollowingInProgress(state),
+    friends: state.friendsPage.friends
   });
 }
 

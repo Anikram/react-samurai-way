@@ -1,7 +1,7 @@
 import s from "./ProfileInfo.module.css";
 import React, {useEffect, useState} from "react";
 
-const ProfileStatusHooks = (props) => {
+const ProfileStatus = (props) => {
    let [editMode, setEditMode] = useState(false);
    let [status, setStatus] = useState(props.status);
 
@@ -10,7 +10,7 @@ const ProfileStatusHooks = (props) => {
    }, [props.status])
 
   const activateEditMode = () => {
-     if (props.statusEditable) {
+     if (props.profileId === props.authorizedUserId) {
         setEditMode(true)
      }
   }
@@ -47,4 +47,4 @@ const ProfileStatusHooks = (props) => {
     )
 };
 
-export default ProfileStatusHooks;
+export default ProfileStatus;

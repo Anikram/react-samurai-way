@@ -1,6 +1,7 @@
 import authAPI from "../api/AuthApi";
 import {stopSubmit} from "redux-form";
 import {clearUserFriendsOnLogout, getUserFriends} from "./friendsReducer";
+import {getUserProfile} from "./profileReducer";
 
 const SET_AUTH_USER_DATA = '/auth/SET-USER-DATA';
 const UPDATE_ERRORS = '/auth/UPDATE-ERRORS';
@@ -51,6 +52,7 @@ export const fetchUserProfile = () => async (dispatch) => {
   if (response.data.resultCode === 0) {
     let {id, login, email} = response.data.data;
     dispatch(setAuthUserData(id, login, email, true));
+    dispatch(getUserProfile(id));
   }
 }
 
