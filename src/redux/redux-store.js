@@ -8,6 +8,7 @@ import authReducer from "./authReducer";
 import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk';
 import appReducer from "./appReducer";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 
 
@@ -22,7 +23,10 @@ let reducers = combineReducers({
   form: formReducer
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+const store = createStore(reducers, composeWithDevTools(
+  applyMiddleware(thunkMiddleware),
+  // other store enhancers if any
+));
 
 window.store = store;
 

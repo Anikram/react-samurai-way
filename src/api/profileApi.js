@@ -10,6 +10,9 @@ const profileAPI = {
   },
   updateUserStatus(status) {
     return axiosInstance.put(`profile/status/`, {status})
+  },
+  isFriend(userId) {
+    return axiosInstance.get(`follow/${userId}`);
   }
 }
 

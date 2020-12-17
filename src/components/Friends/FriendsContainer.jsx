@@ -12,10 +12,6 @@ class FriendsContainer extends React.PureComponent {
     this.props.getUserFriends(this.props.friendsNumber,this.props.pageNumber)
   }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return nextProps !== this.props || nextState !== this.state
-  }
-
   render() {
     return (
       <Friends

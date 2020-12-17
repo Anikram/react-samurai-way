@@ -1,4 +1,5 @@
 import profileAPI from "../api/profileApi";
+import profileApi from "../api/profileApi";
 
 const ADD_POST = '/profile/ADD-POST';
 const DELETE_POST = '/profile/DELETE-POST';
@@ -6,6 +7,7 @@ const ADD_LIKE = '/profile/ADD-LIKE';
 const SET_USER_PROFILE = '/profile/SET-USER-PROFILE';
 const SET_USER_STATUS = '/profile/SET-USER-STATUS';
 const SET_FRIENDS = '/profile/SET-FRIENDS'
+const TOGGLE_IS_FRIEND = '/profile/TOGGLE-IS-FRIEND'
 
 let initialState = {
   posts: [
@@ -18,7 +20,8 @@ let initialState = {
   ],
   profile: null,
   status: '',
-  friends: []
+  friends: [],
+  isFriend: false
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -60,6 +63,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         friends: action.friends
       }
+    case TOGGLE_IS_FRIEND:
+      return {
+        ...state,
+        isFriend: action.value
+      }
     default:
       return state;
   }
@@ -71,6 +79,7 @@ export const addLike = (post_id) => ({type: ADD_LIKE, id: post_id});
 const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 const setFriends = (friends) => ({type: SET_FRIENDS, friends});
+const toggleIsFriend = (value) => ({type: TOGGLE_IS_FRIEND, value})
 
 export const getUserProfile = (userId) => async (dispatch) => {
   let response = await profileAPI.getUserProfile(userId);
@@ -91,6 +100,12 @@ export const updateUserStatus = (status) => async (dispatch) => {
 
 export const setFriendsForUser = (friends) => (dispatch) => {
   dispatch(setFriends(friends))
+}
+
+export const isFriend = (userId) => async (dispatch) => {
+  let response = await profileApi.isFriend(userId);
+
+  response.data ? dispatch(toggleIsFriend(true)) : dispatch(toggleIsFriend(false))
 }
 
 export default profileReducer;

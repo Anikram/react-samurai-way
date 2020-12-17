@@ -13,8 +13,8 @@ const Profile = React.memo((props) => {
                    followUser={props.followUser}
                    unfollowUser={props.unfollowUser}
                    followingInProgress={props.followingInProgress}
-                   friendProfile={props.friendProfile}
-                   friendData={props.friendData}/>
+                   isFriend={props.isFriend}
+                   currentUser={props.currentUser}/>
       <PostsContainer />
     </div>
   )

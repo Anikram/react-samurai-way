@@ -5,7 +5,7 @@ import Preloader from "../../Common/Preloader/Preloader";
 import ProfileStatusHooks from "./ProfileStatusHook";
 import {FollowUnfollowButton} from "../../Common/Buttons/FollowUnfollow";
 
-const ProfileInfo = ({profile, updateUserStatus, statusEditable, status, friendData, ...props}) => {
+const ProfileInfo = ({profile, updateUserStatus, statusEditable, status, isFriend, currentUser, ...props}) => {
   if (!profile) {
     return <Preloader/>
   }
@@ -31,8 +31,8 @@ const ProfileInfo = ({profile, updateUserStatus, statusEditable, status, friendD
               <h5> {profile.fullName} </h5>
             </div>
 
-            { friendData.length ? <FollowUnfollowButton userId={friendData.id}
-                                  followed={friendData.followed}
+            { !currentUser ? <FollowUnfollowButton userId={profile.userId}
+                                  followed={isFriend}
                                   followingInProgress={props.followingInProgress}
                                   unfollowUser={props.unfollowUser}
                                               followUser={props.followUser}/> : <div></div>

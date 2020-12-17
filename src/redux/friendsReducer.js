@@ -40,7 +40,7 @@ const friendsReducer = (state = initialState, action) => {
 };
 
  const getFriends = (friends) => ({type: GET_FRIENDS, friends});
- const clearFriendsOnLogout = () => ({type: CLEAR_FRIENDS})
+ const clearFriendsOnLogout = () => ({type: CLEAR_FRIENDS});
 
 export const getUserFriends = (friendsNumber = 10, friendsPageNumber = 1) => async (dispatch) => {
   let response = await friendsAPI.fetchUserFriends(friendsNumber, friendsPageNumber);
