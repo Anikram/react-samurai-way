@@ -7,17 +7,20 @@ import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import NavbarContainer from "./components/Navbar/Navbar";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import LoginPage from "./components/Login/Login";
 import LogoutPage from "./components/Login/Logout";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {connect, Provider} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/Common/Preloader/Preloader";
 import {compose} from "redux";
 import store from "./redux/redux-store";
+import withSuspense from "./hoc/withSuspense";
+// import ProfileContainer from "./components/Profile/ProfileContainer";
+// import DialogsContainer from "./components/Dialogs/DialogsContainer";
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 
 
 class App extends React.PureComponent {
@@ -32,24 +35,23 @@ class App extends React.PureComponent {
 
     return (
       <div>
-          <HeaderContainer/>
-          <div className={'app-wrapper'}>
-            <NavbarContainer />
-            <div className={'app-wrapper-content'}>
-              <Route path='/profile/:userId?'
-                     render={() => <ProfileContainer/>}/>
-              <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-              <Route path='/music' render={() => <Music/>}/>
-              <Route path='/news' render={() => <News newsPosts={this.props.store.getState().newsPage.newsPosts}/>}/>
-              <Route path='/settings' render={() => <Settings/>}/>
-              <Route path='/users' render={() => <UsersContainer/>}/>
-              <Route path='/login' render={() => <LoginPage/>}/>
-              <Route path='/logout' render={() => <LogoutPage/>}/>
-            </div>
-            <div>
-              <FriendsContainer store={this.props.store}/>
-            </div>
+        <HeaderContainer/>
+        <div className={'app-wrapper'}>
+          <NavbarContainer/>
+          <div className={'app-wrapper-content'}>
+            <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)}/>
+            <Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
+            <Route path='/music' render={() => <Music/>}/>
+            <Route path='/news' render={() => <News newsPosts={this.props.store.getState().newsPage.newsPosts}/>}/>
+            <Route path='/settings' render={() => <Settings/>}/>
+            <Route path='/users' render={() => <UsersContainer/>}/>
+            <Route path='/login' render={() => <LoginPage/>}/>
+            <Route path='/logout' render={() => <LogoutPage/>}/>
           </div>
+          <div>
+            <FriendsContainer store={this.props.store}/>
+          </div>
+        </div>
         <Footer/>
       </div>
     );
