@@ -1,9 +1,43 @@
+.paginator {
+    padding: 0.5rem;
+    display: block;
+    margin: 0 auto;
+    height: 3rem;
+}
 
 .selectedPage {
     font-weight: bold;
     font-size: 1.2rem;
+    background-color: #977035;
+    color: white;
+    transition: 0.3s;
+    border-radius: 5px;
+
+}
+
+.pageSelector:hover {
+    font-size: 1.2rem;
+    transition: 0.3s;
 }
 
 .pageSelector {
+    height: 2rem;
+    width: 2rem;
     cursor: pointer;
+    color: black;
+    padding: 0.3rem;
+    text-decoration: none;
+    transition: 0.3s;
+    vertical-align: middle;
+}
+
+.icons {
+    transition: 0.3s;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    vertical-align: middle;
+}
+.icons:hover {
+    transform: scale(1.2);
+    transition: 0.3s;
 }
