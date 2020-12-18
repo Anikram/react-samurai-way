@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/react-samurai-way/static/css/main.05ece6cd.chunk.css",
+    "main.js": "/react-samurai-way/static/js/main.75c66adb.chunk.js",
+    "main.js.map": "/react-samurai-way/static/js/main.75c66adb.chunk.js.map",
+    "runtime-main.js": "/react-samurai-way/static/js/runtime-main.282d81c2.js",
+    "runtime-main.js.map": "/react-samurai-way/static/js/runtime-main.282d81c2.js.map",
+    "static/js/2.8e2eeaba.chunk.js": "/react-samurai-way/static/js/2.8e2eeaba.chunk.js",
+    "static/js/2.8e2eeaba.chunk.js.map": "/react-samurai-way/static/js/2.8e2eeaba.chunk.js.map",
+    "static/css/3.8c978dea.chunk.css": "/react-samurai-way/static/css/3.8c978dea.chunk.css",
+    "static/js/3.71b2cd8f.chunk.js": "/react-samurai-way/static/js/3.71b2cd8f.chunk.js",
+    "static/js/3.71b2cd8f.chunk.js.map": "/react-samurai-way/static/js/3.71b2cd8f.chunk.js.map",
+    "static/css/4.4cf3ef19.chunk.css": "/react-samurai-way/static/css/4.4cf3ef19.chunk.css",
+    "static/js/4.58c9a272.chunk.js": "/react-samurai-way/static/js/4.58c9a272.chunk.js",
+    "static/js/4.58c9a272.chunk.js.map": "/react-samurai-way/static/js/4.58c9a272.chunk.js.map",
+    "static/js/5.b326a580.chunk.js": "/react-samurai-way/static/js/5.b326a580.chunk.js",
+    "static/js/5.b326a580.chunk.js.map": "/react-samurai-way/static/js/5.b326a580.chunk.js.map",
+    "index.html": "/react-samurai-way/index.html",
+    "static/css/3.8c978dea.chunk.css.map": "/react-samurai-way/static/css/3.8c978dea.chunk.css.map",
+    "static/css/4.4cf3ef19.chunk.css.map": "/react-samurai-way/static/css/4.4cf3ef19.chunk.css.map",
+    "static/css/main.05ece6cd.chunk.css.map": "/react-samurai-way/static/css/main.05ece6cd.chunk.css.map",
+    "static/js/2.8e2eeaba.chunk.js.LICENSE.txt": "/react-samurai-way/static/js/2.8e2eeaba.chunk.js.LICENSE.txt",
+    "static/js/main.75c66adb.chunk.js.LICENSE.txt": "/react-samurai-way/static/js/main.75c66adb.chunk.js.LICENSE.txt",
+    "static/media/preloader.ea356991.svg": "/react-samurai-way/static/media/preloader.ea356991.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.282d81c2.js",
+    "static/js/2.8e2eeaba.chunk.js",
+    "static/css/main.05ece6cd.chunk.css",
+    "static/js/main.75c66adb.chunk.js"
+  ]
+}
